@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
-  branch: main   # change if your default branch differs
+  name: github
+  repo: sohammj/demo
+  branch: main
+  base_url: https://cmsauth.netlify.app
+  auth_endpoint: /auth
+
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
