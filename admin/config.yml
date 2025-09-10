@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: sohammj/demo
+  repo: sohammj/demo   # your repo
   branch: main
-  base_url: https://cmsauth.netlify.app
-  auth_endpoint: /auth
+  base_url: https://cmsauth.netlify.app   # your OAuth site
+  auth_endpoint: auth   # no slash in front
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
@@ -28,7 +28,7 @@ collections:
         fields:
           - label: "Testimonials"
             name: "items"
-            widget: "list"
+            widget: list
             summary: "{{fields.name}} — {{fields.role}}"
             fields:
               - { label: "Name", name: "name", widget: "string" }
