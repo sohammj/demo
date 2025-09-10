@@ -4,72 +4,7 @@
     <meta charset="utf-8" />
     <title>Content Manager</title>
     <meta name="robots" content="noindex" />
-    <!-- Load Decap CMS first -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
-  <body>
-    <script>
-      window.CMS_MANUAL_INIT = true; // prevents CMS from auto-loading config.yml
-
-      document.addEventListener("DOMContentLoaded", function () {
-        CMS.init({
-          config: {
-            backend: {
-              name: "github",
-              repo: "sohammj/demo",              // your repo
-              branch: "main",
-              base_url: "https://cmsauth.netlify.app", // your OAuth helper
-              auth_endpoint: "auth"
-            },
-
-            media_folder: "static/uploads",
-            public_folder: "/uploads",
-
-            collections: [
-              {
-                name: "pages",
-                label: "Pages",
-                files: [
-                  {
-                    file: "content/about.md",
-                    label: "About Page",
-                    name: "about",
-                    fields: [
-                      { label: "Title", name: "title", widget: "string" },
-                      { label: "Body", name: "body", widget: "markdown" }
-                    ]
-                  }
-                ]
-              },
-              {
-                name: "site_data",
-                label: "Site Data",
-                files: [
-                  {
-                    file: "data/testimonials.json",
-                    label: "Testimonials",
-                    name: "testimonials",
-                    fields: [
-                      {
-                        label: "Testimonials",
-                        name: "items",
-                        widget: "list",
-                        summary: "{{fields.name}} — {{fields.role}}",
-                        fields: [
-                          { label: "Name", name: "name", widget: "string" },
-                          { label: "Role / Company", name: "role", widget: "string", required: false },
-                          { label: "Message", name: "message", widget: "text" },
-                          { label: "Photo", name: "photo", widget: "image", required: false }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        });
-      });
-    </script>
-  </body>
+  <body></body>
 </html>
