@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main   # change if your default branch differs
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/about.md"
+        label: "About Page"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string", default: "About the Founder" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "site_data"
+    label: "Site Data"
+    files:
+      - file: "data/testimonials.json"
+        label: "Testimonials"
+        name: "testimonials"
+        fields:
+          - label: "Testimonials"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role / Company", name: "role", widget: "string", required: false }
+              - { label: "Message", name: "message", widget: "text" }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
