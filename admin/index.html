@@ -4,31 +4,20 @@
     <meta charset="utf-8" />
     <title>Content Manager</title>
     <meta name="robots" content="noindex" />
-    <!-- Netlify Identity widget for login -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Decap CMS (new build of Netlify CMS) -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
     <script>
-      // Reload /admin after login so CMS gets a valid session
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-
-      // Tell Decap we will init manually (no external config.yml fetch)
       window.CMS_MANUAL_INIT = true;
-
-      // Inline config (equivalent to your config.yml)
       CMS.init({
         config: {
-          backend: { name: "git-gateway", branch: "main" },
+          backend: {
+            name: "github",
+            repo: "sohammj/demo",                       // <-- your site repo
+            branch: "main",
+            base_url: "https://cmsauth.netlify.app/callback", // <-- the OAuth site you just deployed
+            auth_endpoint: "/auth"
+          },
           media_folder: "static/uploads",
           public_folder: "/uploads",
           collections: [
@@ -41,7 +30,7 @@
                   label: "About Page",
                   name: "about",
                   fields: [
-                    { label: "Title", name: "title", widget: "string", default: "About the Founder" },
+                    { label: "Title", name: "title", widget: "string" },
                     { label: "Body", name: "body", widget: "markdown" }
                   ]
                 }
@@ -60,7 +49,6 @@
                       label: "Testimonials",
                       name: "items",
                       widget: "list",
-                      summary: "{{fields.name}} — {{fields.role}}",
                       fields: [
                         { label: "Name", name: "name", widget: "string" },
                         { label: "Role / Company", name: "role", widget: "string", required: false },
