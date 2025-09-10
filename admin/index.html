@@ -8,14 +8,16 @@
   </head>
   <body>
     <script>
+      // Use inline config so we don't fetch admin/config.yml
       window.CMS_MANUAL_INIT = true;
+
       CMS.init({
         config: {
           backend: {
             name: "github",
-            repo: "sohammj/demo",                       // <-- your site repo
+            repo: "sohammj/demo",
             branch: "main",
-            base_url: "https://cmsauth.netlify.app/callback", // <-- the OAuth site you just deployed
+            base_url: "https://cmsauth.netlify.app", // <-- ROOT of your oauth app
             auth_endpoint: "/auth"
           },
           media_folder: "static/uploads",
@@ -30,7 +32,7 @@
                   label: "About Page",
                   name: "about",
                   fields: [
-                    { label: "Title", name: "title", widget: "string" },
+                    { label: "Title", name: "title", widget: "string", default: "About the Founder" },
                     { label: "Body", name: "body", widget: "markdown" }
                   ]
                 }
@@ -49,6 +51,7 @@
                       label: "Testimonials",
                       name: "items",
                       widget: "list",
+                      summary: "{{fields.name}} — {{fields.role}}",
                       fields: [
                         { label: "Name", name: "name", widget: "string" },
                         { label: "Role / Company", name: "role", widget: "string", required: false },
