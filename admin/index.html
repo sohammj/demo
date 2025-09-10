@@ -4,16 +4,16 @@
     <meta charset="utf-8" />
     <title>Content Manager</title>
     <meta name="robots" content="noindex" />
-    <!-- Netlify Identity login widget -->
+    <!-- Netlify Identity widget for login -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <!-- Decap CMS (new build of Netlify CMS) -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
     <script>
-      // After Identity login, reload /admin so the UI renders
+      // Reload /admin after login so CMS gets a valid session
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
+        window.netlifyIdentity.on("init", (user) => {
           if (!user) {
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
@@ -21,6 +21,60 @@
           }
         });
       }
+
+      // Tell Decap we will init manually (no external config.yml fetch)
+      window.CMS_MANUAL_INIT = true;
+
+      // Inline config (equivalent to your config.yml)
+      CMS.init({
+        config: {
+          backend: { name: "git-gateway", branch: "main" },
+          media_folder: "static/uploads",
+          public_folder: "/uploads",
+          collections: [
+            {
+              name: "pages",
+              label: "Pages",
+              files: [
+                {
+                  file: "content/about.md",
+                  label: "About Page",
+                  name: "about",
+                  fields: [
+                    { label: "Title", name: "title", widget: "string", default: "About the Founder" },
+                    { label: "Body", name: "body", widget: "markdown" }
+                  ]
+                }
+              ]
+            },
+            {
+              name: "site_data",
+              label: "Site Data",
+              files: [
+                {
+                  file: "data/testimonials.json",
+                  label: "Testimonials",
+                  name: "testimonials",
+                  fields: [
+                    {
+                      label: "Testimonials",
+                      name: "items",
+                      widget: "list",
+                      summary: "{{fields.name}} — {{fields.role}}",
+                      fields: [
+                        { label: "Name", name: "name", widget: "string" },
+                        { label: "Role / Company", name: "role", widget: "string", required: false },
+                        { label: "Message", name: "message", widget: "text" },
+                        { label: "Photo", name: "photo", widget: "image", required: false }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      });
     </script>
   </body>
 </html>
