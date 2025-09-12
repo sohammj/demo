@@ -1,0 +1,89 @@
+/* @import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --teal:#2aa6a0;
+  --aqua:#6ec6c1;
+  --ink:#1e293b;
+  --muted:#64748b;
+  --bg:#ffffff;
+  --soft:#f7f9f9;
+}
+html,body{height:100%}
+body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+h1,h2,h3,h4{font-family:"Playfair Display",serif}
+.btn-primary{background:var(--teal);border-color:var(--teal)}
+.btn-primary:hover{background:#228c87;border-color:#228c87}
+.btn-accent{background:var(--aqua);border-color:var(--aqua);color:#fff}
+.btn-accent:hover{background:#56aaa5;border-color:#56aaa5}
+.section-pad{padding:72px 0}
+.hero{background:radial-gradient(1000px 600px at 90% -10%, rgba(42,166,160,.15), transparent 60%),linear-gradient(180deg,#ffffff 0%,#f7f9f9 100%)}
+.card-soft{border:0;box-shadow:0 8px 22px rgba(2,32,71,.06);border-radius:20px}
+.icon-badge{width:52px;height:52px;display:grid;place-items:center;border-radius:12px;background:rgba(0,109,119,.08);color:var(--teal)}
+.divider{height:1px;background:#eaeaea}
+.nav-link{font-weight:500}
+.sticky-cta{position:fixed;right:20px;bottom:20px;z-index:1000;border-radius:999px;padding:.8rem 1.1rem}
+.muted{color:var(--muted)}
+.lead{color:#334155}
+footer a{color:inherit;text-decoration:none}
+
+
+
+/* ---------- POLISH ---------- */
+.container { max-width: 1140px; }                 /* slightly narrower for elegance */
+.lead { line-height: 1.7; }
+
+.navbar-brand img.brand-logo { height: 36px; }    /* logo size in navbar */
+.navbar { backdrop-filter: saturate(120%) blur(4px); }
+
+.badge-soft {
+  background: #fff; border: 1px solid #eaeaea; color: #0f766e;
+  box-shadow: 0 4px 14px rgba(2,32,71,.06);
+}
+.btn-lg { padding: .85rem 1.2rem; border-radius: 12px; font-weight: 600; }
+.btn-outline-ink {
+  border-color: #cfd6df; color: #334155; background: #fff;
+}
+.btn-outline-ink:hover { border-color: #94a3b8; background:#f8fafc; }
+
+.hero-card {
+  background: #f3faf9;                   /* softer than plain white */
+  border: 1px solid #e9f2f1;
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(2,32,71,.08);
+}
+
+.section-divider {
+  height: 1px; background: linear-gradient(90deg, transparent, #e8ecf2, transparent);
+}
+
+.footer-note { color:#64748b; }
