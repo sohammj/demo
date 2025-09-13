@@ -5,6 +5,15 @@ import { sanityClient } from '@/lib/sanity'
 import { HOME_QUERY, SERVICES_QUERY, TESTIMONIALS_QUERY, SETTINGS_QUERY } from '@/lib/queries'
 import { urlFor } from '@/lib/image'
 
+
+
+
+type Slug = { current?: string }
+type Service = { _id?: string; slug?: Slug; icon?: string; title: string; description?: string }
+type Testimonial = { _id?: string; name: string; role?: string; message: string }
+
+
+
 export const revalidate = 60 // ISR
 
 export default async function HomePage() {
@@ -14,6 +23,7 @@ export default async function HomePage() {
     sanityClient.fetch(TESTIMONIALS_QUERY),
     sanityClient.fetch(SETTINGS_QUERY),
   ])
+
 
   return (
     <main>
@@ -229,8 +239,8 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="row g-4">
-            {services?.map((s: any, i: number) => (
-              <div key={s._id ?? s.slug?.current ?? `svc-${i}`} className="col-md-6 col-lg-4">
+            {services?.map((s: Service, i: number) => (
+            <div key={s._id ?? s.slug?.current ?? `svc-${i}`} className="col-md-6 col-lg-4">
                 <div className="card card-soft h-100">
                   <div className="card-body p-4">
                     <div className="icon-badge mb-3">
@@ -256,8 +266,8 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="row g-4">
-            {testimonials?.map((t: any, i: number) => (
-              <div key={t._id ?? `t-${i}`} className="col-md-6 col-lg-4">
+            {testimonials?.map((t: Testimonial, i: number) => (
+            <div key={t._id ?? `t-${i}`} className="col-md-6 col-lg-4">
                 <div className="card card-soft h-100">
                   <div className="card-body p-4 d-flex flex-column">
                     <div className="mb-3">
