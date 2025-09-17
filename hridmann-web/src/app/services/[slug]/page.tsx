@@ -129,6 +129,8 @@ import {
   SETTINGS_QUERY,
 } from '@/lib/queries'
 
+import type { PortableTextBlock } from 'sanity'
+
 type Params = { slug: string }
 
 type SanityImage = {
@@ -144,7 +146,7 @@ type ServiceDoc = {
   icon?: string
   slug?: string
   heroImage?: SanityImage
-  body?: any
+  body?: PortableTextBlock[]
   gallery?: SanityImage[]
 }
 
