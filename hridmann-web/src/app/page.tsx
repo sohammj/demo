@@ -449,7 +449,7 @@ export default async function HomePage() {
 
   return (
     <main>
-      {/* NAV */}
+      {/* NAV
       <nav className="navbar navbar-expand-lg bg-white border-bottom py-3 sticky-top">
         <div className="container">
           <a className="navbar-brand fw-semibold" href="#">
@@ -475,7 +475,61 @@ export default async function HomePage() {
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */}
+        {/* NAV */}
+      <nav className="navbar bg-white border-bottom py-3 sticky-top">
+          <div className="container">
+            {/* Brand (left) */}
+            <Link href="/" className="navbar-brand fw-semibold">
+              {settings?.siteName || 'Hridmann'}
+            </Link>
+
+            {/* Desktop menu (right, always visible on lg+) */}
+            {/* <ul className="navbar-nav d-none d-lg-flex ms-auto align-items-center gap-4">
+              <li className="nav-item"><a className="nav-link text-dark" href="#about">About</a></li>
+              <li className="nav-item"><a className="nav-link text-dark" href="#services">Services</a></li>
+              <li className="nav-item"><a className="nav-link text-dark" href="#testimonials">Testimonials</a></li>
+              <li className="nav-item"><a className="nav-link text-dark" href="#contact">Contact</a></li>
+            </ul> */}
+
+            <div className="ms-auto d-none d-lg-flex align-items-center gap-4">
+              <a className="nav-link text-dark" href="#about">About</a>
+              <a className="nav-link text-dark" href="#services">Services</a>
+              <a className="nav-link text-dark" href="#testimonials">Testimonials</a>
+              <a className="nav-link text-dark" href="#contact">Contact</a>
+            </div>
+
+
+            {/* Mobile button (only shows < lg) */}
+            <button
+              className="btn btn-outline-ink d-lg-none"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileNav"
+              aria-controls="mobileNav"
+            >
+              Menu
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile offcanvas menu */}
+        <div className="offcanvas offcanvas-end" tabIndex={-1} id="mobileNav" aria-labelledby="mobileNavLabel">
+          <div className="offcanvas-header">
+            <h5 className="offcanvas-title" id="mobileNavLabel">{settings?.siteName || 'Hridmann'}</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
+          </div>
+          <div className="offcanvas-body">
+            <ul className="navbar-nav">
+              <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#about">About</a></li>
+              <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#services">Services</a></li>
+              <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#testimonials">Testimonials</a></li>
+              <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+
 
       {/* HERO */}
       <header className="hero py-5">
