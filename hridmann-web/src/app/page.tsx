@@ -390,9 +390,21 @@ import {
 } from '@/lib/queries'
 import { urlFor } from '@/lib/image'
 
-// ---- Types (replace `any`) ----
-type Slug = { current?: string }
+import Link from 'next/link'
 
+// ---- Types (replace `any`) ----
+// type Slug = { current?: string }
+
+// type Service = {
+//   _id?: string
+//   slug?: Slug
+//   icon?: string
+//   title: string
+//   description?: string
+// }
+
+
+type Slug = { current?: string }
 type Service = {
   _id?: string
   slug?: Slug
@@ -400,6 +412,7 @@ type Service = {
   title: string
   description?: string
 }
+
 
 type Testimonial = {
   _id?: string
@@ -555,7 +568,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SERVICES */}
+     {/* SERVICES */}
       <section id="services" className="section-pad" style={{ background: 'var(--soft)' }}>
         <div className="container">
           <div className="row justify-content-center text-center mb-4">
@@ -564,16 +577,26 @@ export default async function HomePage() {
               <p className="muted">Psychology-led programs tailored to people, culture, and performance.</p>
             </div>
           </div>
+
           <div className="row g-4">
             {services?.map((s: Service, i: number) => (
-              <div key={s._id ?? s.slug?.current ?? `svc-${i}`} className="col-md-6 col-lg-4">
+              <div
+                key={s._id ?? s.slug?.current ?? `svc-${i}`}
+                className="col-md-6 col-lg-4"
+              >
                 <div className="card card-soft h-100">
                   <div className="card-body p-4">
                     <div className="icon-badge mb-3">
-                      <i className={`bi ${s.icon}`} />
+                      <i className={`bi ${s.icon || 'bi-grid-3x3-gap'}`} />
                     </div>
                     <h5 className="card-title">{s.title}</h5>
                     <p className="card-text muted">{s.description}</p>
+
+                    {s.slug?.current && (
+                      <Link href={`/services/${s.slug.current}`} className="btn btn-link p-0">
+                        Learn more <i className="bi bi-arrow-right ms-1" />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
@@ -581,6 +604,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
 
       {/* TESTIMONIALS */}
       <section id="testimonials" className="section-pad bg-white">
