@@ -31,12 +31,12 @@ export default defineType({
     }),
 
     // NEW:
-    defineField({
-      name: 'heroImage',
-      type: 'image',
-      title: 'Hero image',
-      options: { hotspot: true },
-    }),
+    // defineField({
+    //   name: 'heroImage',
+    //   type: 'image',
+    //   title: 'Hero image',
+    //   options: { hotspot: true },
+    // }),
     defineField({
       name: 'body',
       title: 'Detailed content',
@@ -52,5 +52,55 @@ export default defineType({
       type: 'array',
       of: [{ type: 'image', options: { hotspot: true } }],
     }),
+
+    // fields: [
+    { name: 'badge', type: 'string', title: 'Badge (e.g., Workshop)' },
+    { name: 'heroImage', type: 'image', title: 'Hero Image', options: { hotspot: true } },
+    {
+      name: 'outcomes',
+      type: 'array',
+      title: 'What you’ll get',
+      of: [{ type: 'string' }],
+    },
+    {
+      name: 'agenda',
+      type: 'array',
+      title: 'Agenda',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'title', type: 'string', title: 'Title' },
+          { name: 'duration', type: 'string', title: 'Duration (e.g., 30m)' },
+        ],
+        preview: {
+          select: { title: 'title', duration: 'duration' },
+          prepare: ({ title, duration }) => ({ title, subtitle: duration }),
+        },
+      }],
+    },
+    {
+      name: 'quickFacts',
+      type: 'array',
+      title: 'Quick facts',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'label', type: 'string', title: 'Label' },
+          { name: 'value', type: 'string', title: 'Value' },
+        ],
+        preview: {
+          select: { title: 'label', subtitle: 'value' },
+        },
+      }],
+    },
+    {
+      name: 'related',
+      type: 'array',
+      title: 'Related services',
+      of: [{ type: 'reference', to: [{ type: 'service' }] }],
+    },
+    // ]
+
   ],
+
 })

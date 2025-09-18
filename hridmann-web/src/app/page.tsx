@@ -500,7 +500,7 @@ export default async function HomePage() {
             </div>
 
 
-            {/* Mobile button (only shows < lg) */}
+            {/* Mobile button (only shows < lg)
             <button
               className="btn btn-outline-ink d-lg-none"
               type="button"
@@ -509,7 +509,19 @@ export default async function HomePage() {
               aria-controls="mobileNav"
             >
               Menu
+            </button> */}
+            {/* Mobile button (only shows < lg) */}
+            <button
+              className="btn d-lg-none border-0"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileNav"
+              aria-controls="mobileNav"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
             </button>
+
           </div>
         </nav>
 

@@ -54,9 +54,18 @@ type Service = {
 
 
 
-export const SERVICE_SLUGS_QUERY = groq`*[_type == "service" && defined(slug.current)]{
-  "slug": slug.current
-}`
+// export const SERVICE_SLUGS_QUERY = groq`*[_type == "service" && defined(slug.current)]{
+//   "slug": slug.current
+// }`
+
+
+
+
+export const SERVICE_SLUGS_QUERY = /* groq */ `
+*[_type == "service" && defined(slug.current)]{ "slug": slug.current }
+`
+
+
 
 // export const SERVICE_BY_SLUG_QUERY = groq`*[_type == "service" && slug.current == $slug][0]{
 //   _id,
@@ -70,19 +79,44 @@ export const SERVICE_SLUGS_QUERY = groq`*[_type == "service" && defined(slug.cur
 // }`
 
 
+// export const SERVICE_BY_SLUG_QUERY = /* groq */ `
+// *[_type == "service" && slug.current == $slug][0]{
+//   _id,
+//   title,
+//   description,
+//   icon,
+//   "slug": slug.current,
+
+//   // map whatever you named it to "body"
+//   "body": coalesce(detailedContent, body),
+
+//   // deref to get .asset.url directly
+//   heroImage{ _key, _type, asset->{ url } },
+//   gallery[]{ _key, _type, asset->{ url } }
+// }
+// `
+
+
+
+
 export const SERVICE_BY_SLUG_QUERY = /* groq */ `
 *[_type == "service" && slug.current == $slug][0]{
   _id,
   title,
   description,
   icon,
-  "slug": slug.current,
-
-  // map whatever you named it to "body"
-  "body": coalesce(detailedContent, body),
-
-  // deref to get .asset.url directly
-  heroImage{ _key, _type, asset->{ url } },
-  gallery[]{ _key, _type, asset->{ url } }
+  "slug": slug,
+  "heroImage": heroImage{ asset->{ url } },
+  body,
+  "gallery": gallery[]{ _key, asset->{ url } },
+  badge,
+  outcomes[],
+  agenda[]{ _key, title, duration },
+  quickFacts[]{ _key, label, value },
+  "related": related[]->{
+    _key,
+    title,
+    "slug": slug
+  }
 }
 `
