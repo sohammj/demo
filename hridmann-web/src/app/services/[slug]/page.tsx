@@ -735,9 +735,9 @@ export default async function ServicePage({ params }: { params: Params }) {
                 <a href="#contact" className="btn btn-primary">
                   Book a discovery call
                 </a>
-                <a href="/#testimonials" className="btn btn-outline-primary">
+                <Link href="/#testimonials" className="btn btn-outline-primary">
                   Read testimonials
-                </a>
+                </Link>
               </div>
 
             </div>
@@ -855,9 +855,9 @@ export default async function ServicePage({ params }: { params: Params }) {
                     <a href="#contact" className="btn btn-primary w-100 mb-2">
                       Get a custom quote
                     </a>
-                    <a href="/#testimonials" className="btn btn-outline-primary w-100">
+                    <Link href="/#testimonials" className="btn btn-outline-primary">
                       Read testimonials
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
