@@ -779,9 +779,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section> */}
-
       {/* TESTIMONIALS */}
-        <section id="testimonials" className="section-pad bg-white overflow-hidden">
+        <section id="testimonials" className="section-pad bg-white">
           <div className="container">
             <div className="row justify-content-center text-center mb-4">
               <div className="col-lg-8">
@@ -790,10 +789,10 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* TRACK: one long row we slide horizontally */}
-            <div className="testimonials-track d-flex gap-4">
-              {testimonials?.map((t: Testimonial, i: number) => (
-                <div key={t._id ?? `t-${i}`} className="flex-shrink-0" style={{ width: '85%', maxWidth: 520 }}>
+            {/* Desktop: normal grid, Mobile: horizontal scroll */}
+            <div className="d-flex d-md-none gap-3 overflow-auto pb-3" style={{ scrollSnapType: "x mandatory" }}>
+              {testimonials?.map((t, i) => (
+                <div key={t._id ?? `t-${i}`} className="flex-shrink-0" style={{ width: "85%", scrollSnapAlign: "start" }}>
                   <div className="card card-soft h-100">
                     <div className="card-body p-4 d-flex flex-column">
                       <div className="mb-3">
@@ -803,7 +802,28 @@ export default async function HomePage() {
                       <div className="mt-3 small muted">
                         <strong>{t.name}</strong>
                         <br />
-                        {t.role || ''}
+                        {t.role || ""}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Grid */}
+            <div className="row g-4 d-none d-md-flex">
+              {testimonials?.map((t, i) => (
+                <div key={t._id ?? `t-${i}`} className="col-md-6 col-lg-4">
+                  <div className="card card-soft h-100">
+                    <div className="card-body p-4 d-flex flex-column">
+                      <div className="mb-3">
+                        <i className="bi bi-quote display-6 text-secondary" />
+                      </div>
+                      <p className="flex-grow-1">{t.message}</p>
+                      <div className="mt-3 small muted">
+                        <strong>{t.name}</strong>
+                        <br />
+                        {t.role || ""}
                       </div>
                     </div>
                   </div>
