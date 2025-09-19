@@ -397,6 +397,7 @@ import HeaderEffects from '@/components/HeaderEffects'
 import HeroCarousel from '@/components/HeroCarousel'
 import Reveal from '@/components/Reveal'
 
+
 // ---- Types (replace `any`) ----
 // type Slug = { current?: string }
 
@@ -705,6 +706,7 @@ export default async function HomePage() {
         <div className="container py-4">
           <div className="row align-items-center g-4">
             <div className="col-lg-7">
+              <HeroCarousel slides={home?.heroSlides} />
               <span className="badge rounded-pill text-bg-light border mb-3">
                 <i className="bi bi-heart-pulse me-2 text-danger" />
                 Psychology • HR • Wellbeing
