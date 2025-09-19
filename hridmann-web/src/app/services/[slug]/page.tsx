@@ -956,10 +956,11 @@ export default async function ServicePage(
           </Link>
 
           <div className="ms-auto d-none d-lg-flex align-items-center gap-4">
-            <a className="nav-link text-dark" href="#about">About</a>
-            <a className="nav-link text-dark" href="#services">Services</a>
-            <a className="nav-link text-dark" href="#testimonials">Testimonials</a>
-            <a className="nav-link text-dark" href="#contact">Contact</a>
+            <Link className="nav-link text-dark" href="/#about">About</Link>
+            <Link className="nav-link text-dark" href="/#services">Services</Link>
+            <Link className="nav-link text-dark" href="/#testimonials">Testimonials</Link>
+            <a className="nav-link text-dark" href="/#contact">Contact</a>
+
           </div>
 
           <button
@@ -990,10 +991,10 @@ export default async function ServicePage(
         </div>
         <div className="offcanvas-body">
           <ul className="navbar-nav">
-            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#about">About</a></li>
-            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#services">Services</a></li>
-            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#testimonials">Testimonials</a></li>
-            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="#contact">Contact</a></li>
+            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="/#about">About</a></li>
+            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="/#services">Services</a></li>
+            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="/#testimonials">Testimonials</a></li>
+            <li className="nav-item"><a className="nav-link" data-bs-dismiss="offcanvas" href="/#contact">Contact</a></li>
           </ul>
         </div>
       </div>
