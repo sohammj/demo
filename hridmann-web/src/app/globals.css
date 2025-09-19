@@ -105,3 +105,47 @@ footer a{color:inherit;text-decoration:none}
 /* globals.css */
 html { scroll-behavior: smooth; }
 section[id] { scroll-margin-top: 96px; } /* offset for sticky navbar */
+
+
+
+@media (min-width: 992px) {
+  .navbar .dropdown:hover > .dropdown-menu { display: block; }
+  .navbar .dropdown-toggle::after { display: none; } /* optional: remove caret */
+  .mega-menu { min-width: 720px; }
+}
+
+
+
+/* smooth anchors + sticky offset */
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:96px}
+
+/* header shrink */
+.header { transition: padding .25s ease, box-shadow .25s ease; }
+.header.shrink { padding-top:.25rem!important; padding-bottom:.25rem!important; box-shadow:0 4px 16px rgba(0,0,0,.06); }
+
+/* desktop: open dropdown on hover */
+@media (min-width: 992px){
+  .navbar .dropdown:hover>.dropdown-menu{display:block}
+  .mega-menu{min-width: 860px}
+}
+
+/* hover tile */
+.hover-tile{border-radius:.75rem;padding:.75rem}
+.hover-tile:hover{background:rgba(0,0,0,.04)}
+
+/* reveal */
+.reveal{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
+.reveal.in-view{opacity:1; transform:none}
+
+/* logos strip */
+.logo-strip{display:flex; gap:32px; align-items:center; overflow:hidden}
+.logo-track{display:flex; gap:32px; animation:scroll-x 28s linear infinite}
+@keyframes scroll-x{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+/* mobile only horizontal */
+@media (max-width: 767.98px){
+  .h-scroll{display:flex; gap:12px; overflow:auto; padding-bottom:6px; scroll-snap-type:x mandatory}
+  .h-scroll>*{flex:0 0 85%; scroll-snap-align:start}
+  .h-scroll::-webkit-scrollbar{display:none}
+}

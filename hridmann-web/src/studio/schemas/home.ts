@@ -29,5 +29,25 @@ of: [{ type: 'string' }],
       type: 'image',
       title: 'About Section Portrait',   // 👈 new field
     }),
+
+
+
+    // studio schema
+defineField({
+  name: 'heroSlides',
+  title: 'Hero Slides',
+  type: 'array',
+  of: [{
+    type: 'object',
+    fields: [
+      { name: 'image', type: 'image', title: 'Image' },
+      { name: 'title', type: 'string', title: 'Headline' },
+      { name: 'subtitle', type: 'text', title: 'Subhead' },
+      { name: 'ctaText', type: 'string' },
+      { name: 'ctaHref', type: 'string' }
+    ]
+  }]
+})
+
 ],
 })
