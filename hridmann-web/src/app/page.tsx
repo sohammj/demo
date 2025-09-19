@@ -427,6 +427,8 @@ type Home = {
   aboutTitle?: string
   aboutBody?: PortableTextBlock[]
   portrait?: { asset?: { _ref?: string } }
+  focusAreas?: string[]
+  certifications?: string[]
 }
 
 type Settings = {
@@ -600,7 +602,7 @@ export default async function HomePage() {
       </header>
       <div className="section-divider" />
 
-      {/* ABOUT */}
+      {/* ABOUT
       <section id="about" className="section-pad bg-white">
         <div className="container">
           <div className="row g-4 align-items-start">
@@ -632,7 +634,79 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+      </section> */}
+
+
+
+
+
+
+
+
+
+      {/* ABOUT */}
+      <section id="about" className="section-pad bg-white">
+        <div className="container">
+          <div className="row g-4 align-items-start">
+
+            {/* Left column: text */}
+            <div className="col-lg-6">
+              <h2 className="fw-semibold mb-3">
+                {home?.aboutTitle}
+              </h2>
+              <div className="mb-3">
+                {home?.aboutBody && <PortableText value={home.aboutBody} />}
+              </div>
+            </div>
+
+            {/* Right column: photo + focus + certs */}
+            <div className="col-lg-6">
+              {/* Founder photo */}
+              {home?.portrait && (
+                <div className="mb-4">
+                  <div className="ratio ratio-4x3 rounded-4 overflow-hidden shadow-sm">
+                    <Image
+                      src={urlFor(home.portrait).width(1200).height(900).fit('crop').url()}
+                      alt="Founder portrait"
+                      fill
+                      sizes="(max-width: 992px) 100vw, 600px"
+                      className="object-fit-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Areas of Focus & Certifications card */}
+              <div className="card card-soft p-4">
+                {home?.focusAreas?.length ? (
+                  <>
+                    <h5 className="mb-3">Areas of Focus</h5>
+                    <ul className="mb-0">
+                      {home.focusAreas.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : null}
+
+                {home?.certifications?.length ? (
+                  <>
+                    <div className="divider my-4" />
+                    <h6 className="mb-2">Certifications &amp; Learning</h6>
+                    <ul className="mb-0">
+                      {home.certifications.map((cert, i) => (
+                        <li key={i}>{cert}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+
 
      {/* SERVICES */}
       <section id="services" className="section-pad" style={{ background: 'var(--soft)' }}>

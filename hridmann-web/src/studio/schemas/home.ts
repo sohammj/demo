@@ -11,5 +11,17 @@ defineField({ name: 'heroSubtitle', type: 'text', title: 'Hero Subtitle' }),
 defineField({ name: 'portrait', type: 'image', title: 'Hero Portrait', options: { hotspot: true } }),
 defineField({ name: 'aboutTitle', type: 'string', title: 'About Title', initialValue: 'About the Founder' }),
 defineField({ name: 'aboutBody', type: 'array', title: 'About Body', of: [{ type: 'block' }] }),
+defineField({
+      name: 'focusAreas',
+      type: 'array',
+      title: 'Areas of Focus',
+      of: [{ type: 'string' }],
+    }),
+defineField({
+name: 'certifications',
+type: 'array',
+title: 'Certifications & Learning',
+of: [{ type: 'string' }],
+}),
 ],
 })

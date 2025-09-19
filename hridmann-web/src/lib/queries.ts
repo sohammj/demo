@@ -1,7 +1,8 @@
 import { groq } from 'next-sanity'
 
 export const HOME_QUERY = groq`*[_type == "home"][0]{
-  heroTitle, heroSubtitle, aboutTitle, aboutBody, portrait
+  heroTitle, heroSubtitle, aboutTitle, aboutBody, portrait, focusAreas,
+  certifications
 }`
 
 // export const SERVICES_QUERY = groq`*[_type == "service"] | order(title asc){
