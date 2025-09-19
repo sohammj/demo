@@ -959,7 +959,7 @@ export default async function ServicePage(
             <Link className="nav-link text-dark" href="/#about">About</Link>
             <Link className="nav-link text-dark" href="/#services">Services</Link>
             <Link className="nav-link text-dark" href="/#testimonials">Testimonials</Link>
-            <a className="nav-link text-dark" href="/#contact">Contact</a>
+            <a className="nav-link text-dark" href="#contact">Contact</a>
 
           </div>
 
