@@ -427,6 +427,7 @@ type Home = {
   aboutTitle?: string
   aboutBody?: PortableTextBlock[]
   portrait?: { asset?: { _ref?: string } }
+  aboutPortrait?: { asset?: { _ref?: string } }
   focusAreas?: string[]
   certifications?: string[]
 }
@@ -662,20 +663,20 @@ export default async function HomePage() {
             {/* Right column: photo + focus + certs */}
             <div className="col-lg-6">
               {/* Founder photo */}
-              {home?.portrait && (
+              {home?.aboutPortrait && (
                 <div className="mb-4">
                   <div className="ratio ratio-4x3 rounded-4 overflow-hidden shadow-sm">
                     <Image
-                      src={urlFor(home.portrait).width(1200).height(900).fit('crop').url()}
-                      alt="Founder portrait"
+                      src={urlFor(home.aboutPortrait).width(1200).height(900).fit('crop').url()}
+                      alt="About founder portrait"
                       fill
                       sizes="(max-width: 992px) 100vw, 600px"
                       className="object-fit-cover"
-                      priority
                     />
                   </div>
                 </div>
               )}
+
 
               {/* Areas of Focus & Certifications card */}
               <div className="card card-soft p-4">

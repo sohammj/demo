@@ -23,5 +23,11 @@ type: 'array',
 title: 'Certifications & Learning',
 of: [{ type: 'string' }],
 }),
+
+ defineField({
+      name: 'aboutPortrait',
+      type: 'image',
+      title: 'About Section Portrait',   // 👈 new field
+    }),
 ],
 })
