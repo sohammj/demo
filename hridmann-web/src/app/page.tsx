@@ -391,6 +391,7 @@ import {
 import { urlFor } from '@/lib/image'
 
 import Link from 'next/link'
+import ScrollAnimations from '@/components/ScrollAnimations'
 
 // ---- Types (replace `any`) ----
 // type Slug = { current?: string }
@@ -452,6 +453,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <ScrollAnimations />
       {/* NAV
       <nav className="navbar navbar-expand-lg bg-white border-bottom py-3 sticky-top">
         <div className="container">
@@ -747,7 +749,7 @@ export default async function HomePage() {
       </section>
 
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS
       <section id="testimonials" className="section-pad bg-white">
         <div className="container">
           <div className="row justify-content-center text-center mb-4">
@@ -776,7 +778,41 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
+      {/* TESTIMONIALS */}
+        <section id="testimonials" className="section-pad bg-white overflow-hidden">
+          <div className="container">
+            <div className="row justify-content-center text-center mb-4">
+              <div className="col-lg-8">
+                <h2 className="fw-semibold">Testimonials</h2>
+                <p className="muted">What leaders and learners say.</p>
+              </div>
+            </div>
+
+            {/* TRACK: one long row we slide horizontally */}
+            <div className="testimonials-track d-flex gap-4">
+              {testimonials?.map((t: Testimonial, i: number) => (
+                <div key={t._id ?? `t-${i}`} className="flex-shrink-0" style={{ width: '85%', maxWidth: 520 }}>
+                  <div className="card card-soft h-100">
+                    <div className="card-body p-4 d-flex flex-column">
+                      <div className="mb-3">
+                        <i className="bi bi-quote display-6 text-secondary" />
+                      </div>
+                      <p className="flex-grow-1">{t.message}</p>
+                      <div className="mt-3 small muted">
+                        <strong>{t.name}</strong>
+                        <br />
+                        {t.role || ''}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
 
       {/* CONTACT */}
       <section id="contact" className="section-pad" style={{ background: 'var(--soft)' }}>
