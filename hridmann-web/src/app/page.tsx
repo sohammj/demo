@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
-import Link from "next/link";
+
 
 
 import { sanityClient } from '@/lib/sanity'
