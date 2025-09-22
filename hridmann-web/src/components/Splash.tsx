@@ -29,12 +29,23 @@ export default function Splash({ logoUrl, showOncePerSession = true }: Props) {
       }`}
     >
       <div className="animate-zoom">
-        {logoUrl ? (
-          <Image src={logoUrl} alt="Hridmann Logo" width={220} height={220} priority />
-        ) : (
-          <span className="text-2xl font-bold">Hridmann</span>
-        )}
-      </div>
+            {logoUrl ? (
+                <div className="max-w-[60vw]">
+                    <Image
+                        src={logoUrl}
+                        alt="Hridmann Logo"
+                        width={1000}
+                        height={1000}
+                        priority
+                        className="w-full h-auto"
+                    />
+                </div>
+
+            ) : (
+                <span className="text-2xl font-bold">Hridmann</span>
+            )}
+        </div>
+
     </div>
   )
 }
