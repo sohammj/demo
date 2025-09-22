@@ -82,7 +82,7 @@ export default async function HomePage() {
 
   return (
     <main>
-      <Splash logo={settings?.logo} />
+      <Splash logoUrl={settings?.logo?.asset?.url} />
       <ScrollAnimations />
       <HeaderEffects />
       <Reveal />
