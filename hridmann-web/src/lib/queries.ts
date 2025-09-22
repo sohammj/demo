@@ -45,7 +45,7 @@ export const SETTINGS_QUERY = groq`*[_type == "settings"][0]{
   ctaExploreLabel,
   ctaContactLabel,
   formSendLabel,
-  logo { asset->{ _ref, url } }
+  logo { asset->{ _ref, url } },
   "navigation": *[_type == "nav"][0]{
     items[]{ _key, href, label }
   }
