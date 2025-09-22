@@ -575,129 +575,41 @@ export default async function HomePage() {
             {settings?.siteName || 'Hridmann'}
           </Link>
 
-          {/* Desktop menu */}
-          <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
-            <li className="nav-item">
-              <a className="nav-link text-dark" href="#about">About</a>
-            </li>
 
-            {/* Services dropdown (hover/click) */}
-            <li className="nav-item dropdown position-static">
-              <a
-                href="#"
-                className="nav-link text-dark dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Services
-              </a>
+          {/* Services mega (hover only, click = navigate) */}
+          <li className="nav-item position-static dropdown">
+            {/* NOTE: no dropdown-toggle, no data-bs-toggle */}
+            <a
+              href="/#services"
+              className="nav-link text-dark"
+              onClick={() => {/* nothing to toggle on desktop */}}
+            >
+              Services
+            </a>
 
-              {/* Mega dropdown body */}
-              <div className="dropdown-menu mega-menu shadow border-0 p-3">
-                <div className="row g-3">
-                  {services?.map((s, i) => (
-                    <div key={s._id ?? s.slug?.current ?? i} className="col-12 col-md-6 col-lg-4">
-                      {s.slug?.current ? (
-                        <Link href={`/services/${s.slug.current}`} className="text-decoration-none">
-                          <div className="py-2 px-2 rounded-3 hover-bg">
-                            <div className="small fw-semibold mb-1">{s.title}</div>
-                            <div className="small text-secondary">{s.description}</div>
-                          </div>
-                        </Link>
-                      ) : (
-                        <div className="py-2 px-2 rounded-3">
+            {/* Mega dropdown — will be shown by CSS hover, not by JS */}
+            <div className="dropdown-menu mega-menu shadow border-0 p-3">
+              <div className="row g-3">
+                {services?.map((s, i) => (
+                  <div key={s._id ?? s.slug?.current ?? i} className="col-12 col-md-6 col-lg-4">
+                    {s.slug?.current ? (
+                      <Link href={`/services/${s.slug.current}`} className="text-decoration-none">
+                        <div className="py-2 px-2 rounded-3 hover-bg">
                           <div className="small fw-semibold mb-1">{s.title}</div>
                           <div className="small text-secondary">{s.description}</div>
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
+                      </Link>
+                    ) : (
+                      <div className="py-2 px-2 rounded-3">
+                        <div className="small fw-semibold mb-1">{s.title}</div>
+                        <div className="small text-secondary">{s.description}</div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link text-dark" href="#testimonials">Testimonials</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-dark" href="#contact">Contact</a>
-            </li>
-          </ul>
-
-          {/* Mobile toggler */}
-          <button
-            className="btn d-lg-none border-0"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#mobileNav"
-            aria-controls="mobileNav"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile offcanvas menu (Services collapsible only) */}
-      <div className="offcanvas offcanvas-end" tabIndex={-1} id="mobileNav" aria-labelledby="mobileNavLabel">
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="mobileNavLabel">{settings?.siteName || 'Hridmann'}</h5>
-          <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
-        </div>
-        <div className="offcanvas-body">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" data-bs-dismiss="offcanvas" href="#about">About</a>
-            </li>
-
-            {/* Services collapsible list */}
-            <li className="nav-item">
-              <button
-                className="nav-link w-100 text-start"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mServices"
-                aria-expanded="false"
-                aria-controls="mServices"
-              >
-                Services
-              </button>
-              <div id="mServices" className="collapse ps-3">
-                <ul className="list-unstyled mb-2">
-                  {services?.map((s, i) => (
-                    <li key={s._id ?? s.slug?.current ?? i} className="my-1">
-                      {s.slug?.current ? (
-                        <Link
-                          href={`/services/${s.slug.current}`}
-                          className="text-decoration-none"
-                          data-bs-dismiss="offcanvas"
-                        >
-                          {s.title}
-                        </Link>
-                      ) : s.title}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" data-bs-dismiss="offcanvas" href="#testimonials">Testimonials</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" data-bs-dismiss="offcanvas" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
-
-
-
-
-
+            </div>
+          </li>
 
 
 

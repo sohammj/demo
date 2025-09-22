@@ -149,3 +149,29 @@ section[id]{scroll-margin-top:96px}
   .h-scroll>*{flex:0 0 85%; scroll-snap-align:start}
   .h-scroll::-webkit-scrollbar{display:none}
 }
+
+
+/* Hide by default */
+.navbar .dropdown .dropdown-menu {
+  display: none;
+}
+
+/* Desktop: show on hover/focus-within */
+@media (min-width: 992px) {
+  .navbar .dropdown:hover > .dropdown-menu,
+  .navbar .dropdown:focus-within > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Optional: make the mega menu wide like your first screenshot */
+.mega-menu {
+  width: min(1200px, 96vw);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Nice hover bg for each service tile (you already reference hover-bg) */
+.hover-bg:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
