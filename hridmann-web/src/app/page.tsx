@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
+import Link from "next/link";
+
 
 import { sanityClient } from '@/lib/sanity'
 import {
@@ -93,17 +95,17 @@ export default async function HomePage() {
           {/* Desktop menu */}
           <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
             <li className="nav-item">
-              <a className="nav-link text-dark" href="#about">
+              <Link className="nav-link text-dark" href="#about">
                 {settings?.navAboutLabel || 'About'}
-              </a>
+              </Link>
             </li>
 
             {/* Services mega (hover only, click navigates) */}
             <li className="nav-item dropdown position-static">
               {/* IMPORTANT: no dropdown-toggle and no data-bs-toggle */}
-              <a className="nav-link text-dark" href="/#services">
+              <Link className="nav-link text-dark" href="/#services">
                 {settings?.navServicesLabel || 'Services'}
-              </a>
+              </Link>
 
               {/* Mega dropdown — shown by CSS hover */}
               <div className="dropdown-menu mega-menu shadow border-0 p-3">
@@ -130,14 +132,14 @@ export default async function HomePage() {
             </li>
 
             <li className="nav-item">
-              <a className="nav-link text-dark" href="#testimonials">
+              <Link className="nav-link text-dark" href="#testimonials">
                 {settings?.navTestimonialsLabel || 'Testimonials'}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-dark" href="#contact">
+              <Link className="nav-link text-dark" href="#contact">
                 {settings?.navContactLabel || 'Contact'}
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -164,9 +166,9 @@ export default async function HomePage() {
         <div className="offcanvas-body">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" data-bs-dismiss="offcanvas" href="#about">
+              <Link className="nav-link" data-bs-dismiss="offcanvas" href="#about">
                 {settings?.navAboutLabel || 'About'}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <button
@@ -198,14 +200,14 @@ export default async function HomePage() {
               </div>
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-bs-dismiss="offcanvas" href="#testimonials">
+              <Link className="nav-link" data-bs-dismiss="offcanvas" href="#testimonials">
                 {settings?.navTestimonialsLabel || 'Testimonials'}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-bs-dismiss="offcanvas" href="#contact">
+              <Link  className="nav-link" data-bs-dismiss="offcanvas" href="#contact">
                 {settings?.navContactLabel || 'Contact'}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -231,14 +233,14 @@ export default async function HomePage() {
               </p>
 
               <div className="d-flex flex-wrap gap-2">
-                <a href="#services" className="btn btn-primary btn-lg">
+                <Link  href="#services" className="btn btn-primary btn-lg">
                   <i className="bi bi-grid-3x3-gap me-2" />
                   {settings?.ctaExploreLabel || 'Explore Services'}
-                </a>
-                <a href="#contact" className="btn btn-outline-ink btn-lg">
+                </Link>
+                <Link  href="#contact" className="btn btn-outline-ink btn-lg">
                   <i className="bi bi-chat-left-text me-2" />
                   {settings?.ctaContactLabel || 'Get in Touch'}
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -435,16 +437,16 @@ export default async function HomePage() {
                 </h3>
                 <p className="mb-1">
                   <i className="bi bi-envelope me-2" />
-                  <a href={`mailto:${settings?.contactEmail || 'harshana.hridmann@gmail.com'}`}>
+                  <Link href={`mailto:${settings?.contactEmail || 'harshana.hridmann@gmail.com'}`}>
                     {settings?.contactEmail || 'harshana.hridmann@gmail.com'}
-                  </a>
+                  </Link>
                 </p>
                 {settings?.instagram && (
                   <p className="mb-4">
                     <i className="bi bi-instagram me-2" />
-                    <a target="_blank" rel="noopener" href={settings.instagram}>
+                    <Link target="_blank" rel="noopener" href={settings.instagram}>
                       @hridmann
-                    </a>
+                    </Link>
                   </p>
                 )}
                 <p className="muted small mb-0">
@@ -491,10 +493,10 @@ export default async function HomePage() {
       </section>
 
       {/* STICKY CTA & FOOTER */}
-      <a href="#contact" className="btn btn-accent sticky-cta shadow">
+      <Link href="#contact" className="btn btn-accent sticky-cta shadow">
         <i className="bi bi-telephone me-2" />
         Contact
-      </a>
+      </Link>
 
       <footer className="py-4 border-top bg-white">
         <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
