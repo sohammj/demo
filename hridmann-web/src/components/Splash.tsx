@@ -24,26 +24,22 @@ export default function Splash({ logoUrl, showOncePerSession = true }: Props) {
 
   return (
     <div
-      className={`fixed inset-0 bg-white flex items-center justify-center transition-all duration-1000 z-[9999] ${
-        hide ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
+        className={`fixed inset-0 flex items-center justify-center transition-all duration-1000 z-[9999] ${
+            hide ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        style={{ backgroundColor: "#d9f6f8" }} // light blue
     >
-      <div className="animate-zoom">
+      <div className="animate-zoom flex items-center justify-center w-full h-full">
             {logoUrl ? (
-                <div className="max-w-[60vw]">
-                   <img
-                        src={logoUrl}
-                        alt="Hridmann Logo"
-                        className="w-[300px] md:w-[500px] lg:w-[700px] h-auto"
-                    />
-
-                </div>
-
+            <img
+                src={logoUrl}
+                alt="Hridmann Logo"
+                className="max-w-[80vw] max-h-[80vh] object-contain"
+            />
             ) : (
-                <span className="text-2xl font-bold">Hridmann</span>
+            <span className="text-4xl font-bold">Hridmann</span>
             )}
         </div>
-
     </div>
   )
 }
