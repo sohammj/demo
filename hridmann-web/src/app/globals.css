@@ -1,177 +1,103 @@
-/* @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
 @import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  --teal:#2aa6a0;
-  --aqua:#6ec6c1;
-  --ink:#1e293b;
-  --muted:#64748b;
-  --bg:#ffffff;
-  --soft:#f7f9f9;
+/* ---------- Theme ---------- */
+:root {
+  --teal: #2aa6a0;
+  --aqua: #6ec6c1;
+  --ink: #1e293b;
+  --muted: #64748b;
+  --bg: #ffffff;
+  --soft: #f7f9f9;
 }
-html,body{height:100%}
-body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-h1,h2,h3,h4{font-family:"Playfair Display",serif}
-.btn-primary{background:var(--teal);border-color:var(--teal)}
-.btn-primary:hover{background:#228c87;border-color:#228c87}
-.btn-accent{background:var(--aqua);border-color:var(--aqua);color:#fff}
-.btn-accent:hover{background:#56aaa5;border-color:#56aaa5}
-.section-pad{padding:72px 0}
-.hero{background:radial-gradient(1000px 600px at 90% -10%, rgba(42,166,160,.15), transparent 60%),linear-gradient(180deg,#ffffff 0%,#f7f9f9 100%)}
-.card-soft{border:0;box-shadow:0 8px 22px rgba(2,32,71,.06);border-radius:20px}
-.icon-badge{width:52px;height:52px;display:grid;place-items:center;border-radius:12px;background:rgba(0,109,119,.08);color:var(--teal)}
-.divider{height:1px;background:#eaeaea}
-.nav-link{font-weight:500}
-.sticky-cta{position:fixed;right:20px;bottom:20px;z-index:1000;border-radius:999px;padding:.8rem 1.1rem}
-.muted{color:var(--muted)}
-.lead{color:#334155}
-footer a{color:inherit;text-decoration:none}
 
+/* ---------- Base ---------- */
+html, body { height: 100%; scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 96px; }
 
-
-/* ---------- POLISH ---------- */
-.container { max-width: 1140px; }                 /* slightly narrower for elegance */
-.lead { line-height: 1.7; }
-
-.navbar-brand img.brand-logo { height: 36px; }    /* logo size in navbar */
-.navbar { backdrop-filter: saturate(120%) blur(4px); }
-
-.badge-soft {
-  background: #fff; border: 1px solid #eaeaea; color: #0f766e;
-  box-shadow: 0 4px 14px rgba(2,32,71,.06);
+body {
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
 }
-.btn-lg { padding: .85rem 1.2rem; border-radius: 12px; font-weight: 600; }
+h1,h2,h3,h4 { font-family: "Playfair Display", serif; }
+
+/* ---------- Components ---------- */
+.btn-primary {
+  background: var(--teal); border-color: var(--teal);
+}
+.btn-primary:hover { background:#228c87; border-color:#228c87; }
+
+.btn-accent {
+  background: var(--aqua); border-color: var(--aqua); color:#fff;
+}
+.btn-accent:hover { background:#56aaa5; border-color:#56aaa5; }
+
 .btn-outline-ink {
-  border-color: #cfd6df; color: #334155; background: #fff;
+  border-color:#cfd6df; color:#334155; background:#fff;
 }
-.btn-outline-ink:hover { border-color: #94a3b8; background:#f8fafc; }
+.btn-outline-ink:hover { border-color:#94a3b8; background:#f8fafc; }
 
+.btn-lg { padding:.85rem 1.2rem; border-radius:12px; font-weight:600; }
+
+.hero {
+  background: radial-gradient(1000px 600px at 90% -10%, rgba(42,166,160,.15), transparent 60%),
+              linear-gradient(180deg,#fff 0%,#f7f9f9 100%);
+}
 .hero-card {
-  background: #f3faf9;                   /* softer than plain white */
-  border: 1px solid #e9f2f1;
-  border-radius: 20px;
-  box-shadow: 0 10px 24px rgba(2,32,71,.08);
+  background:#f3faf9; border:1px solid #e9f2f1; border-radius:20px;
+  box-shadow:0 10px 24px rgba(2,32,71,.08);
 }
 
-.section-divider {
-  height: 1px; background: linear-gradient(90deg, transparent, #e8ecf2, transparent);
+.card-soft { border:0; box-shadow:0 8px 22px rgba(2,32,71,.06); border-radius:20px; }
+.icon-badge {
+  width:52px; height:52px; display:grid; place-items:center;
+  border-radius:12px;
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  color:var(--teal);
 }
 
+.navbar { backdrop-filter:saturate(120%) blur(4px); }
+.navbar-brand img.brand-logo { height:36px; }
+.nav-link { font-weight:500; }
+
+.section-pad { padding:72px 0; }
+.section-divider { height:1px; background:linear-gradient(90deg, transparent,#e8ecf2,transparent); }
+
+.sticky-cta {
+  position:fixed; right:20px; bottom:20px; z-index:1000;
+  border-radius:999px; padding:.8rem 1.1rem;
+}
+
+.muted { color:var(--muted); }
+.lead { color:#334155; line-height:1.7; }
+
+footer a { color:inherit; text-decoration:none; }
 .footer-note { color:#64748b; }
 
-
-/* in your global css */
-.content-body p { margin-bottom: 1rem; }
-.content-body h2, .content-body h3 { margin-top: 1.5rem; margin-bottom: .75rem; }
-.content-body ul { padding-left: 1.2rem; margin-bottom: 1rem; }
-
-
-
-.object-fit-cover { object-fit: cover; }
-.hover-shadow:hover { box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,.08); }
-.alert-primary-subtle { background: rgba(13,110,253,.06); }
-
-
-
-/* globals.css */
-html { scroll-behavior: smooth; }
-section[id] { scroll-margin-top: 96px; } /* offset for sticky navbar */
-
-
-
-@media (min-width: 992px) {
-  .navbar .dropdown:hover > .dropdown-menu { display: block; }
-  .navbar .dropdown-toggle::after { display: none; } /* optional: remove caret */
-  .mega-menu { min-width: 720px; }
+/* ---------- Dropdown / Mega Menu ---------- */
+.navbar .dropdown .dropdown-menu { display:none; }
+@media (min-width:992px) {
+  .navbar .dropdown:hover>.dropdown-menu,
+  .navbar .dropdown:focus-within>.dropdown-menu { display:block; }
+  .mega-menu { width:min(1200px,96vw); left:50%; transform:translateX(-50%); }
 }
 
+/* ---------- Utilities ---------- */
+.hover-bg:hover,
+.hover-tile:hover { background:rgba(0,0,0,0.04); }
+.reveal { opacity:0; transform:translateY(12px); transition:opacity .5s, transform .5s; }
+.reveal.in-view { opacity:1; transform:none; }
+.object-fit-cover { object-fit:cover; }
 
+.logo-strip { display:flex; gap:32px; align-items:center; overflow:hidden; }
+.logo-track { display:flex; gap:32px; animation:scroll-x 28s linear infinite; }
+@keyframes scroll-x { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* smooth anchors + sticky offset */
-html{scroll-behavior:smooth}
-section[id]{scroll-margin-top:96px}
-
-/* header shrink */
-.header { transition: padding .25s ease, box-shadow .25s ease; }
-.header.shrink { padding-top:.25rem!important; padding-bottom:.25rem!important; box-shadow:0 4px 16px rgba(0,0,0,.06); }
-
-/* desktop: open dropdown on hover */
-@media (min-width: 992px){
-  .navbar .dropdown:hover>.dropdown-menu{display:block}
-  .mega-menu{min-width: 860px}
-}
-
-/* hover tile */
-.hover-tile{border-radius:.75rem;padding:.75rem}
-.hover-tile:hover{background:rgba(0,0,0,.04)}
-
-/* reveal */
-.reveal{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
-.reveal.in-view{opacity:1; transform:none}
-
-/* logos strip */
-.logo-strip{display:flex; gap:32px; align-items:center; overflow:hidden}
-.logo-track{display:flex; gap:32px; animation:scroll-x 28s linear infinite}
-@keyframes scroll-x{from{transform:translateX(0)} to{transform:translateX(-50%)}}
-
-/* mobile only horizontal */
-@media (max-width: 767.98px){
-  .h-scroll{display:flex; gap:12px; overflow:auto; padding-bottom:6px; scroll-snap-type:x mandatory}
-  .h-scroll>*{flex:0 0 85%; scroll-snap-align:start}
-  .h-scroll::-webkit-scrollbar{display:none}
-}
-
-
-/* Hide by default */
-.navbar .dropdown .dropdown-menu {
-  display: none;
-}
-
-/* Desktop: show on hover/focus-within */
-@media (min-width: 992px) {
-  .navbar .dropdown:hover > .dropdown-menu,
-  .navbar .dropdown:focus-within > .dropdown-menu {
-    display: block;
-  }
-}
-
-/* Optional: make the mega menu wide like your first screenshot */
-.mega-menu {
-  width: min(1200px, 96vw);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Nice hover bg for each service tile (you already reference hover-bg) */
-.hover-bg:hover {
-  background: rgba(0, 0, 0, 0.04);
+@media (max-width:767.98px) {
+  .h-scroll { display:flex; gap:12px; overflow:auto; padding-bottom:6px; scroll-snap-type:x mandatory; }
+  .h-scroll>* { flex:0 0 85%; scroll-snap-align:start; }
+  .h-scroll::-webkit-scrollbar { display:none; }
 }
