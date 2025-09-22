@@ -23,7 +23,7 @@ export const SERVICES_QUERY = groq`*[_type == "service"] | order(title asc){
   title,
   description,
   icon,
-  slug
+  slug,
 }`
 
 export const TESTIMONIALS_QUERY = groq`*[_type == "testimonial"] | order(_createdAt desc){
@@ -45,6 +45,7 @@ export const SETTINGS_QUERY = groq`*[_type == "settings"][0]{
   ctaExploreLabel,
   ctaContactLabel,
   formSendLabel,
+  logo { asset->{ _ref, url } }
   "navigation": *[_type == "nav"][0]{
     items[]{ _key, href, label }
   }

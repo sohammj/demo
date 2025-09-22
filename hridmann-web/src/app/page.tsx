@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
+import Splash from "@/components/Splash"
 
 
 
@@ -80,6 +81,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <Splash logo={settings?.logo} />
       <ScrollAnimations />
       <HeaderEffects />
       <Reveal />

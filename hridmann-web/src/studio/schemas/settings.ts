@@ -8,5 +8,11 @@ defineField({ name: 'siteName', type: 'string', title: 'Site Name', initialValue
 defineField({ name: 'contactEmail', type: 'string', title: 'Contact Email' }),
 defineField({ name: 'instagram', type: 'url', title: 'Instagram URL' }),
 defineField({ name: 'footerNote', type: 'string', title: 'Footer Note' }),
+defineField({
+      name: 'logo',
+      type: 'image',
+      title: 'Site Logo',
+      options: { hotspot: true },
+    }),
 ],
 })
