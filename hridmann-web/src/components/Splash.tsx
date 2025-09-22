@@ -1,19 +1,26 @@
 "use client"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { urlFor } from "@/lib/image"
 
 type Props = {
-  logo?: { asset?: { _ref?: string; url?: string } }
+  logoUrl?: string
+  showOncePerSession?: boolean
 }
 
-export default function Splash({ logo }: Props) {
+export default function Splash({ logoUrl, showOncePerSession = true }: Props) {
   const [hide, setHide] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setHide(true), 2500)
-    return () => clearTimeout(timer)
-  }, [])
+    if (showOncePerSession && typeof window !== "undefined") {
+      if (sessionStorage.getItem("splashShown") === "1") {
+        setHide(true)
+        return
+      }
+      sessionStorage.setItem("splashShown", "1")
+    }
+    const t = setTimeout(() => setHide(true), 2500)
+    return () => clearTimeout(t)
+  }, [showOncePerSession])
 
   return (
     <div
@@ -21,19 +28,13 @@ export default function Splash({ logo }: Props) {
         hide ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
-      {logo?.asset ? (
-        <div className="animate-zoom">
-          <Image
-            src={urlFor(logo).width(300).url()} // sanity image
-            alt="Hridmann Logo"
-            width={200}
-            height={200}
-            priority
-          />
-        </div>
-      ) : (
-        <span className="text-2xl font-bold">Hridmann</span>
-      )}
+      <div className="animate-zoom">
+        {logoUrl ? (
+          <Image src={logoUrl} alt="Hridmann Logo" width={220} height={220} priority />
+        ) : (
+          <span className="text-2xl font-bold">Hridmann</span>
+        )}
+      </div>
     </div>
   )
 }

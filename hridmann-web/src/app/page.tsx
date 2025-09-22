@@ -59,6 +59,7 @@ type Settings = {
   contactEmail?: string
   instagram?: string
   footerNote?: string
+  logo?: { asset?: { url?: string; _ref?: string } }
   navAboutLabel?: string
   navServicesLabel?: string
   navTestimonialsLabel?: string
