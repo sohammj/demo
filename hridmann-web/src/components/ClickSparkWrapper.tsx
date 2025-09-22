@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import ClickSpark from './Clickspark'
+import ClickSpark from './ClickSpark'
 
 export default function ClickSparkWrapper({ children }: { children: React.ReactNode }) {
   const [showSpark, setShowSpark] = useState(false)
