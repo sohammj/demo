@@ -18,3 +18,11 @@ export default {
   theme: { extend: {} },
   plugins: [],
 }
+
+safelist: [
+  'text-muted-foreground',
+  'text-foreground',
+  'bg-background',
+  'text-primary',
+  'text-secondary',
+]
