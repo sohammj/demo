@@ -310,22 +310,10 @@ export default async function HomePage() {
               <div className="card card-soft p-4">
                 {home?.focusAreas?.length ? (
                   <>
-                    <h5 className="mb-3">Areas of Focus</h5>
+                    <h5 className="mb-3">Core Strengths</h5>
                     <ul className="mb-0">
                       {home.focusAreas.map((item, i) => (
                         <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </>
-                ) : null}
-
-                {home?.certifications?.length ? (
-                  <>
-                    <div className="divider my-4" />
-                    <h6 className="mb-2">Certifications &amp; Learning</h6>
-                    <ul className="mb-0">
-                      {home.certifications.map((cert, i) => (
-                        <li key={i}>{cert}</li>
                       ))}
                     </ul>
                   </>
