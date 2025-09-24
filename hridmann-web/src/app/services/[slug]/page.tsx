@@ -120,12 +120,12 @@ export default async function ServicePage(
           {/* Desktop menu */}
           <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="#about">About</Link>
+              <Link className="nav-link text-dark" href="/#about">About</Link>
             </li>
 
             {/* Services dropdown — click scrolls to #services; hover shows list */}
             <li className="nav-item dropdown position-static">
-              <Link className="nav-link text-dark px-0" href="#services">
+              <Link className="nav-link text-dark px-0" href="/#services">
                 Services
               </Link>
 
@@ -149,10 +149,10 @@ export default async function ServicePage(
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="#testimonials">Testimonials</Link>
+              <Link className="nav-link text-dark" href="/#testimonials">Testimonials</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="#contact">Contact</Link>
+              <Link className="nav-link text-dark" href="/#contact">Contact</Link>
             </li>
           </ul>
 
