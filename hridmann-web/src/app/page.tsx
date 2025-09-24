@@ -7,6 +7,8 @@ import MobileNavOverlay from "@/components/MobileNavOverlay";
 import ContactForm from "@/components/ContactForm";
 import ShinyText from "@/components/ShinyText"
 
+import Aurora from '@/components/Aurora';
+
 
 
 
@@ -160,24 +162,15 @@ export default async function HomePage() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       {/* HERO */}
-      <header className="hero py-5">
-        <div className="container py-4">
+      <header className="relative overflow-hidden w-full py-20">
+        <Aurora
+          colorStops={["#6ec6c1", "#2aa6a0", "#1e293b"]}
+          amplitude={1.2}
+          blend={0.4}
+          speed={0.6}
+        />
+        <div className="container relative z-10">
           <div className="row align-items-center g-4">
             <div className="col-lg-7">
               <span className="badge rounded-pill text-bg-light border mb-3">
@@ -212,7 +205,7 @@ export default async function HomePage() {
             </div>
 
             <div className="col-lg-5">
-              <div className="hero-card p-3">
+              {/* <div className="hero-card p-3"> */}
                 {home?.portrait ? (
                   <Image
                     className="rounded-4 img-fluid"
@@ -232,7 +225,7 @@ export default async function HomePage() {
                     priority
                   />
                 )}
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>
@@ -431,7 +424,7 @@ export default async function HomePage() {
       <footer className="py-4 border-top bg-white">
         <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
           <div>© {new Date().getFullYear()} {settings?.siteName || 'Hridmann'}</div>
-          <div className="footer-note small">{settings?.footerNote || 'Design & build by Soham Joshi'}</div>
+          <div className="footer-note small">{settings?.footerNote || '  '}</div>
         </div>
       </footer>
     </main>

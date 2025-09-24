@@ -370,7 +370,7 @@ export default async function ServicePage(
       <footer className="py-4 border-top bg-white">
         <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
           <div>© {new Date().getFullYear()} {settings?.siteName || 'Hridmann'}</div>
-          <div className="footer-note small">{settings?.footerNote || 'Design & build by Soham Joshi'}</div>
+          <div className="footer-note small">{settings?.footerNote || '  '}</div>
         </div>
       </footer>
     </main>
