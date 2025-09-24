@@ -93,6 +93,11 @@ export default function MobileNavOverlay({
       >
         <div className="mobile-overlay__header">
           <div className="mobile-overlay__brand">{brand}</div>
+          <button
+            className="btn-close"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          ></button>
           {/* Removed the duplicate close button */}
         </div>
 

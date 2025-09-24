@@ -107,9 +107,10 @@ export default async function ServicePage(
 
 
 
-      {/* NAV (same look as home) */}
+      {/* NAV (desktop small dropdown + mobile hamburger) */}
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3 sticky-top header">
         <div className="container">
+          {/* Brand */}
           <Link href="/" className="navbar-brand fw-semibold">
             {settings?.siteName ?? "Hridmann"}
           </Link>
@@ -117,17 +118,16 @@ export default async function ServicePage(
           {/* Desktop menu */}
           <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
             <li className="nav-item">
-              {/* On service pages, let About/Test/Contact link to HOME sections */}
-              <Link className="nav-link text-dark" href="/#about">About</Link>
+              <Link className="nav-link text-dark" href="#about">About</Link>
             </li>
 
-            {/* Services dropdown – items from Sanity */}
+            {/* Services dropdown — click scrolls to #services; hover shows list */}
             <li className="nav-item dropdown position-static">
-              {/* CLICK = go to /#services (smooth scroll), HOVER = show dropdown */}
-              <Link className="nav-link text-dark px-0" href="/#services">
+              <Link className="nav-link text-dark px-0" href="#services">
                 Services
               </Link>
 
+              {/* HOVER (desktop) = small dropdown with items from Sanity */}
               <ul
                 className="dropdown-menu shadow border-0 rounded-3 p-2 menu-elev"
                 style={{ minWidth: "20rem" }}
@@ -146,20 +146,18 @@ export default async function ServicePage(
               </ul>
             </li>
 
-
-
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="/#testimonials">Testimonials</Link>
+              <Link className="nav-link text-dark" href="#testimonials">Testimonials</Link>
             </li>
             <li className="nav-item">
-              {/* On service page you ALSO have a local #contact. If you prefer local scroll, use href="#contact" instead. */}
               <Link className="nav-link text-dark" href="#contact">Contact</Link>
             </li>
           </ul>
+
+          {/* Mobile hamburger button - positioned on the right */}
+          <MobileNavOverlay services={allServices} brand={settings?.siteName ?? "Hridmann"} />
         </div>
       </nav>
-      <MobileNavOverlay services={allServices ?? []} brand={settings?.siteName ?? "Hridmann"} />
-
 
 
 
