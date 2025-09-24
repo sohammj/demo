@@ -176,8 +176,8 @@ export default async function ServicePage(
                 <p className="lead text-secondary">{service.description}</p>
               )}
               <div className="d-flex gap-2 mt-3">
-                <a href="#contact" className="btn btn-primary px-4 ">Book a discovery call</a>
-                <Link href="/#testimonials" className="btn btn-outline-primary px-4">Read testimonials</Link>
+                <a href="#contact" className="btn btn-primary flex-fill">Book a discovery call</a>
+                <Link href="/#testimonials" className="btn btn-outline-primary flex-fill">Read testimonials</Link>
               </div>
             </div>
 
