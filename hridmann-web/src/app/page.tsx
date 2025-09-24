@@ -103,26 +103,22 @@ export default async function HomePage() {
 
 
 
-
-
-      {/* NAV (desktop small dropdown + mobile offcanvas) */}
+      {/* NAV (desktop small dropdown + mobile hamburger) */}
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3 sticky-top header">
         <div className="container">
-          {/* Brand (you can hard-code or keep from settings) */}
+          {/* Brand */}
           <Link href="/" className="navbar-brand fw-semibold">
             {settings?.siteName ?? "Hridmann"}
           </Link>
 
-          {/* Desktop menu (HARD-CODED labels) */}
+          {/* Desktop menu */}
           <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
             <li className="nav-item">
               <Link className="nav-link text-dark" href="#about">About</Link>
             </li>
 
-
             {/* Services dropdown — click scrolls to #services; hover shows list */}
             <li className="nav-item dropdown position-static">
-              {/* CLICK = smooth-scroll to the Services section on this page */}
               <Link className="nav-link text-dark px-0" href="#services">
                 Services
               </Link>
@@ -146,7 +142,6 @@ export default async function HomePage() {
               </ul>
             </li>
 
-
             <li className="nav-item">
               <Link className="nav-link text-dark" href="#testimonials">Testimonials</Link>
             </li>
@@ -154,14 +149,11 @@ export default async function HomePage() {
               <Link className="nav-link text-dark" href="#contact">Contact</Link>
             </li>
           </ul>
+
+          {/* Mobile hamburger button - positioned on the right */}
+          <MobileNavOverlay services={services} brand={settings?.siteName ?? "Hridmann"} />
         </div>
       </nav>
-      <MobileNavOverlay services={services} brand={settings?.siteName ?? "Hridmann"} />
-
-
-
-
-
 
 
 
