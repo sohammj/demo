@@ -110,7 +110,7 @@ export default async function ServicePage(
 
 
       {/* NAV (desktop small dropdown + mobile hamburger) */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3 sticky-top header">
+      <nav className="navbar navbar-expand-lg navbar-light  py-3 sticky-top header">
         <div className="container">
           {/* Brand */}
           <Link href="/" className="navbar-brand fw-semibold">

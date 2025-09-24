@@ -106,10 +106,18 @@ export default async function HomePage() {
 
 
 
-
+      {/* Aurora background */}
+      <div className="aurora-wrapper">
+        <Aurora
+          colorStops={["#a7e8e1", "#6ec6c1", "#2aa6a0"]}
+          amplitude={0.3}
+          blend={0.35}
+          speed={0.4}
+        />
+      </div>
 
       {/* NAV (desktop small dropdown + mobile hamburger) */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3 sticky-top header">
+      <nav className="navbar navbar-expand-lg navbar-light  py-3 sticky-top header">
         <div className="container">
           {/* Brand */}
           <Link href="/" className="navbar-brand fw-semibold">
@@ -123,7 +131,7 @@ export default async function HomePage() {
             </li>
 
             {/* Services dropdown — click scrolls to #services; hover shows list */}
-            <li className="nav-item dropdown position-static">
+            <li className="nav-item dropdown position-static" >
               <Link className="nav-link text-dark px-0" href="#services">
                 Services
               </Link>
@@ -164,12 +172,6 @@ export default async function HomePage() {
 
       {/* HERO */}
       <header className="relative overflow-hidden w-full py-20">
-        <Aurora
-          colorStops={["#6ec6c1", "#2aa6a0", "#1e293b"]}
-          amplitude={1.2}
-          blend={0.4}
-          speed={0.6}
-        />
         <div className="container relative z-10">
           <div className="row align-items-center g-4">
             <div className="col-lg-7">
@@ -233,7 +235,7 @@ export default async function HomePage() {
       <div className="section-divider" />
 
       {/* ABOUT */}
-      <section id="about" className="section-pad bg-white">
+      <section id="about" className="section-pad card-soft">
         <div className="container">
           <div className="row g-4 align-items-start">
             {/* Left column: text */}
@@ -264,7 +266,7 @@ export default async function HomePage() {
               )}
 
               {/* Core Strengths*/}
-              <div className="card card-soft p-4">
+              <div className="card bg-[var(--soft)] border-0 shadow-none p-4">
                 {home?.focusAreas?.length ? (
                   <>
                     <h5 className="mb-3">Core Strengths</h5>
@@ -282,7 +284,9 @@ export default async function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="section-pad" style={{ background: 'var(--soft)' }}>
+      {/* SERVICES */}
+      <section id="services" className="section-pad card-soft">
+
         <div className="container">
           <div className="row justify-content-center text-center mb-4">
             <div className="col-lg-8">
@@ -321,7 +325,7 @@ export default async function HomePage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testimonials" className="section-pad bg-white">
+      <section id="testimonials" className="section-pad card-soft">
         <div className="container">
           <div className="row justify-content-center text-center mb-4">
             <div className="col-lg-8">
@@ -375,7 +379,7 @@ export default async function HomePage() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="section-pad" style={{ background: 'var(--soft)' }}>
+      <section id="contact" className="section-pad card-soft">
         <div className="container">
           <div className="row g-4 align-items-stretch">
             <div className="col-lg-5">
@@ -421,12 +425,13 @@ export default async function HomePage() {
         Contact
       </Link>
 
-      <footer className="py-4 border-top bg-white">
+      <footer className="py-4 border-top">
         <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
           <div>© {new Date().getFullYear()} {settings?.siteName || 'Hridmann'}</div>
-          <div className="footer-note small">{settings?.footerNote || '  '}</div>
+          <div className="footer-note small">{settings?.footerNote || ''}</div>
         </div>
       </footer>
+
     </main>
   )
 }
