@@ -111,7 +111,8 @@ export default function Aurora(props) {
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.backgroundColor = "transparent";
 
-    let program;
+    // let program; // keep 'let' if reassigned, otherwise make it:
+
 
     function resize() {
       if (!ctn) return;
@@ -132,7 +133,7 @@ export default function Aurora(props) {
       return [c.r, c.g, c.b];
     });
 
-    program = new Program(gl, {
+    const program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
       uniforms: {
