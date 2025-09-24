@@ -20,16 +20,18 @@ export default function MobileMenuContent({
   contactLabel: string;
 }) {
   const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement | null>(null);
+  // 🔧 li ref must be HTMLLIElement, not HTMLDivElement
+  const wrapRef = useRef<HTMLLIElement | null>(null);
   const contentRef = useRef<HTMLUListElement | null>(null);
 
-  // keep aria-expanded in sync for the chevron rotation CSS
+  // keep aria-expanded in sync for chevron rotation CSS
   useEffect(() => {
-    const btn = wrapRef.current?.querySelector<HTMLButtonElement>("[data-accordion='svc']");
+    const btn = wrapRef.current?.querySelector<HTMLButtonElement>(
+      "[data-accordion='svc']"
+    );
     if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
   }, [open]);
 
-  // measure content height on each render
   const measuredMax = contentRef.current?.scrollHeight ?? 0;
 
   return (
@@ -93,6 +95,7 @@ export default function MobileMenuContent({
     </ul>
   );
 }
+
 
 // "use client";
 
