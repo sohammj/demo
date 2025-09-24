@@ -120,20 +120,16 @@ export default async function HomePage() {
             </li>
 
 
-            {/* Services dropdown — items from Sanity */}
-            <li className="nav-item dropdown">
-              <button
-                className="nav-link btn btn-link text-dark dropdown-toggle px-0"
-                id="svcDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                type="button"
-              >
+            {/* Services dropdown — click scrolls to #services; hover shows list */}
+            <li className="nav-item dropdown position-static">
+              {/* CLICK = smooth-scroll to the Services section on this page */}
+              <Link className="nav-link text-dark px-0" href="#services">
                 Services
-              </button>
+              </Link>
+
+              {/* HOVER (desktop) = small dropdown with items from Sanity */}
               <ul
                 className="dropdown-menu shadow border-0 rounded-3 p-2 menu-elev"
-                aria-labelledby="svcDropdown"
                 style={{ minWidth: "20rem" }}
               >
                 {services.map((s, i) => (
@@ -149,6 +145,7 @@ export default async function HomePage() {
                 ))}
               </ul>
             </li>
+
 
             <li className="nav-item">
               <Link className="nav-link text-dark" href="#testimonials">Testimonials</Link>
