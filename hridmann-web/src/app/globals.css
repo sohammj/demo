@@ -60,22 +60,46 @@ body {
 h1,h2,h3,h4 { font-family: "Playfair Display", serif; }
 
 /* ---------- Components ---------- */
+/* ---------- Components ---------- */
 .btn-primary {
-  background: var(--teal); border-color: var(--teal);
+  background-color: var(--teal) !important;
+  border-color: var(--teal) !important;
+  color: #fff !important;
 }
-.btn-primary:hover { background:#228c87; border-color:#228c87; }
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #228c87 !important;
+  border-color: #228c87 !important;
+  color: #fff !important;
+}
 
 .btn-accent {
-  background: var(--aqua); border-color: var(--aqua); color:#fff;
+  background: var(--aqua);
+  border-color: var(--aqua);
+  color: #fff;
 }
-.btn-accent:hover { background:#56aaa5; border-color:#56aaa5; }
+.btn-accent:hover {
+  background: #56aaa5;
+  border-color: #56aaa5;
+}
 
 .btn-outline-ink {
-  border-color:#cfd6df; color:#334155; background:#fff;
+  border-color: #cfd6df;
+  color: #56aaa5;
+  background: #fff;
 }
-.btn-outline-ink:hover { border-color:#94a3b8; background:#f8fafc; }
+.btn-outline-ink:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
 
-.btn-lg { padding:.85rem 1.2rem; border-radius:12px; font-weight:600; }
+.btn-lg {
+  padding: .85rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
 
 .hero {
   background: radial-gradient(1000px 600px at 90% -10%, rgba(42,166,160,.15), transparent 60%),

@@ -5,6 +5,7 @@ import type { PortableTextBlock } from 'sanity'
 import Splash from "@/components/Splash"
 import MobileNavOverlay from "@/components/MobileNavOverlay";
 import ContactForm from "@/components/ContactForm";
+import ShinyText from "@/components/ShinyText"
 
 
 
@@ -185,7 +186,12 @@ export default async function HomePage() {
               </span>
 
               <h1 className="display-5 fw-semibold mb-3">
-                {home?.heroTitle || 'Shaping Minds. Strengthening Workplaces.'}
+                <ShinyText
+                    text={home?.heroTitle || 'Shaping Minds. Strengthening Workplaces.'}
+                    disabled={false}
+                    speed={1.5}
+                    className='custom-class'
+                    />
               </h1>
 
               <p className="lead mb-4">
@@ -414,7 +420,10 @@ export default async function HomePage() {
       </section>
 
       {/* STICKY CTA & FOOTER */}
-      <Link href="#contact" className="btn btn-accent sticky-cta shadow">
+      <Link
+        href="#contact"
+        className="btn btn-accent sticky-cta shadow shiny-btn"
+      >
         <i className="bi bi-telephone me-2" />
         Contact
       </Link>
