@@ -52,9 +52,7 @@ export default function RootLayout({
     </html>
   );
 }
-//
-//
-//
+
 
 
 // // layout.tsx
