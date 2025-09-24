@@ -73,16 +73,16 @@ export default function MobileNavOverlay({
 
   return (
     <>
-      {/* the hamburger button (mobile only) */}
+      {/* the hamburger button (mobile only) - now toggles open/close */}
       <button
         className="navbar-toggler d-lg-none border-0"
         type="button"
         aria-controls="mobileOverlay"
         aria-expanded={open}
-        aria-label="Open menu"
-        onClick={() => setOpen(true)}
+        aria-label={open ? "Close menu" : "Open menu"}
+        onClick={() => setOpen(!open)}
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className={`navbar-toggler-icon ${open ? 'open' : ''}`}></span>
       </button>
 
       {/* overlay */}
@@ -93,11 +93,7 @@ export default function MobileNavOverlay({
       >
         <div className="mobile-overlay__header">
           <div className="mobile-overlay__brand">{brand}</div>
-          <button
-            className="btn-close"
-            aria-label="Close"
-            onClick={() => setOpen(false)}
-          />
+          {/* Removed the duplicate close button */}
         </div>
 
         <div className="mobile-overlay__body">
@@ -168,8 +164,6 @@ export default function MobileNavOverlay({
           </ul>
         </div>
       </div>
-
-
     </>
   );
 }
