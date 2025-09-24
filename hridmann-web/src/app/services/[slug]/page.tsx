@@ -326,8 +326,10 @@ export default async function ServicePage(
       {/* CONTACT WIDGET */}
       <section id="contact" className="py-5 bg-light border-top">
         <div className="container">
-          <div className="row g-4">
-            <div className="col-lg-6">
+          <div className="row g-4 align-items-stretch">
+
+            {/* Left card */}
+            <div className="col-lg-5">
               <div className="card rounded-4 shadow-sm h-100">
                 <div className="card-body">
                   <h2 className="h3 mb-3">Get in Touch</h2>
@@ -343,21 +345,26 @@ export default async function ServicePage(
                   {settings?.instagram && (
                     <p className="mb-0">
                       <i className="bi bi-instagram me-2" />
-                      <a href={settings.instagram} target="_blank">@hridmann</a>
+                      <a href={settings.instagram} target="_blank" rel="noopener noreferrer">
+                        @hridmann
+                      </a>
                     </p>
                   )}
                 </div>
               </div>
             </div>
+
+            {/* Right form */}
             <div className="col-lg-7">
               <div className="card card-soft p-4 h-100">
                 <h5 className="mb-3">{settings?.formSendLabel || 'Send a Message'}</h5>
-                <ContactForm label={settings?.formSendLabel} />  {/* ✅ clean replacement */}
+                <ContactForm label={settings?.formSendLabel} />
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="py-4 border-top bg-white">
