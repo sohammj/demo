@@ -37,7 +37,7 @@ export default function ContactForm({ label }: { label?: string }) {
     <>
       <form
         onSubmit={handleSubmit}
-        action="https://formsubmit.co/sohampandey083@gmail.com"
+        action="https://formsubmit.co/harshana.hridmann@gmail.com"
         method="POST"
         className="row g-3"
       >
@@ -94,7 +94,7 @@ export default function ContactForm({ label }: { label?: string }) {
 
       {success && (
         <div className="alert alert-success mt-3">
-          ✅ Thanks for submitting! We’ll get back to you soon.
+          Thanks for submitting! We’ll get back to you soon.
         </div>
       )}
     </>

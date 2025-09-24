@@ -10,6 +10,7 @@ import {
   SETTINGS_QUERY,
 } from '@/lib/queries'
 import type { PortableTextBlock } from 'sanity'
+import ContactForm from "@/components/ContactForm";
 
 
 // + imports
@@ -48,6 +49,7 @@ type Settings = {
   contactEmail?: string
   instagram?: string
   footerNote?: string
+  formSendLabel?: string
 }
 
 /** Next.js 15: still fine to return plain objects here */
@@ -347,37 +349,12 @@ export default async function ServicePage(
                 </div>
               </div>
             </div>
-
-            <div className="col-lg-6">
-              <div className="card rounded-4 shadow-sm h-100">
-                <div className="card-body">
-                  <h2 className="h5 mb-3">Send a Message</h2>
-                  <form action="https://formspree.io/f/your-endpoint" method="POST">
-                    <div className="row g-3">
-                      <div className="col-md-6">
-                        <label htmlFor="name" className="form-label">Name</label>
-                        <input id="name" name="name" className="form-control" placeholder="Your full name" required />
-                      </div>
-                      <div className="col-md-6">
-                        <label htmlFor="email" className="form-label">Email</label>
-                        <input id="email" name="email" type="email" className="form-control" placeholder="you@example.com" required />
-                      </div>
-                      <div className="col-12">
-                        <label htmlFor="message" className="form-label">Message</label>
-                        <textarea id="message" name="message" className="form-control" rows={5} placeholder="How can we help?" required />
-                      </div>
-                      <div className="col-12 d-flex align-items-center gap-3">
-                        <button type="submit" className="btn btn-primary">Send</button>
-                        <small className="text-muted">
-                          By submitting, you consent to be contacted about your enquiry.
-                        </small>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+            <div className="col-lg-7">
+              <div className="card card-soft p-4 h-100">
+                <h5 className="mb-3">{settings?.formSendLabel || 'Send a Message'}</h5>
+                <ContactForm label={settings?.formSendLabel} />  {/* ✅ clean replacement */}
               </div>
             </div>
-
           </div>
         </div>
       </section>
