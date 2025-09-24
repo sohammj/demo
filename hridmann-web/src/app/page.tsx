@@ -3,7 +3,8 @@ import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
 import Splash from "@/components/Splash"
-import MobileMenuContent from "@/components/MobileMenuContent";
+import MobileNavOverlay from "@/components/MobileNavOverlay";
+
 
 
 
@@ -118,6 +119,7 @@ export default async function HomePage() {
               <Link className="nav-link text-dark" href="#about">About</Link>
             </li>
 
+
             {/* Services dropdown — items from Sanity */}
             <li className="nav-item dropdown">
               <button
@@ -155,38 +157,13 @@ export default async function HomePage() {
               <Link className="nav-link text-dark" href="#contact">Contact</Link>
             </li>
           </ul>
+          <MobileNavOverlay services={services} brand={settings?.siteName ?? "Hridmann"} />
 
-          {/* Mobile toggler */}
-          <button
-            className="navbar-toggler d-lg-none border-0"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#mobileNav"
-            aria-controls="mobileNav"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+
         </div>
       </nav>
 
-      {/* Mobile offcanvas (full-screen; accordion shows Sanity services) */}
-      <div className="offcanvas offcanvas-end mobile-menu" tabIndex={-1} id="mobileNav" aria-labelledby="mobileNavLabel">
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title mb-0" id="mobileNavLabel">{settings?.siteName ?? "Hridmann"}</h5>
-          <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
-        </div>
 
-        <div className="offcanvas-body">
-          <MobileMenuContent
-            services={services}
-            aboutLabel="About"
-            servicesLabel="Services"
-            testimonialsLabel="Testimonials"
-            contactLabel="Contact"
-          />
-        </div>
-      </div>
 
 
 
