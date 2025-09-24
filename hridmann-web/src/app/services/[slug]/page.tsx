@@ -284,7 +284,7 @@ export default async function ServicePage(
                       <p className="text-muted small">Let’s tailor this to your team.</p>
                     )}
                     <a href="#contact" className="btn btn-primary w-100 mb-2">Get a custom quote</a>
-                    <Link href="/#testimonials" className="btn btn-outline-primary">Read testimonials</Link>
+                    <Link href="/#testimonials" className="btn btn-outline-primary w-100 mb-2">Read testimonials</Link>
                   </div>
                 </div>
               </div>

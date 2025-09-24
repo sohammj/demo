@@ -4,6 +4,8 @@ import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
 import Splash from "@/components/Splash"
 import MobileNavOverlay from "@/components/MobileNavOverlay";
+import ContactForm from "@/components/ContactForm";
+
 
 
 
@@ -404,35 +406,7 @@ export default async function HomePage() {
             <div className="col-lg-7">
               <div className="card card-soft p-4 h-100">
                 <h5 className="mb-3">{settings?.formSendLabel || 'Send a Message'}</h5>
-                <form action="https://formspree.io/f/yourid" method="POST" className="row g-3">
-                  <div className="col-md-6">
-                    <label className="form-label">Name</label>
-                    <input required name="name" type="text" className="form-control" placeholder="Your full name" />
-                  </div>
-                  <div className="col-md-6">
-                    <label className="form-label">Email</label>
-                    <input required name="email" type="email" className="form-control" placeholder="you@example.com" />
-                  </div>
-                  <div className="col-12">
-                    <label className="form-label">Message</label>
-                    <textarea
-                      required
-                      name="message"
-                      className="form-control"
-                      rows={5}
-                      placeholder="How can we help?"
-                    />
-                  </div>
-                  <div className="col-12 d-flex align-items-center gap-3">
-                    <button className="btn btn-primary" type="submit">
-                      <i className="bi bi-send me-2" />
-                      {settings?.formSendLabel || 'Send'}
-                    </button>
-                    <small className="muted">
-                      By submitting, you consent to be contacted about your enquiry.
-                    </small>
-                  </div>
-                </form>
+                <ContactForm label={settings?.formSendLabel} />  {/* ✅ clean replacement */}
               </div>
             </div>
           </div>
