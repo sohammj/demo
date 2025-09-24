@@ -154,11 +154,9 @@ export default async function HomePage() {
               <Link className="nav-link text-dark" href="#contact">Contact</Link>
             </li>
           </ul>
-          <MobileNavOverlay services={services} brand={settings?.siteName ?? "Hridmann"} />
-
-
         </div>
       </nav>
+      <MobileNavOverlay services={services} brand={settings?.siteName ?? "Hridmann"} />
 
 
 

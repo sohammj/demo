@@ -146,35 +146,7 @@ export default async function ServicePage(
               </ul>
             </li>
 
-            {/* <li className="nav-item dropdown">
-              <button
-                className="nav-link btn btn-link text-dark dropdown-toggle px-0"
-                id="svcDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                type="button"
-              >
-                Services
-              </button>
-              <ul
-                className="dropdown-menu shadow border-0 rounded-3 p-2 menu-elev"
-                aria-labelledby="svcDropdown"
-                style={{ minWidth: "20rem" }}
-              >
-                {allServices?.map((s, i) => (
-                  <li key={s._id ?? s.slug?.current ?? i}>
-                    {s.slug?.current ? (
-                      <Link className="dropdown-item rounded-2 py-2" href={`/services/${s.slug.current}`}>
-                        {s.title}
-                      </Link>
-                    ) : (
-                      <span className="dropdown-item rounded-2 py-2 disabled">{s.title}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
 
-            </li> */}
 
             <li className="nav-item">
               <Link className="nav-link text-dark" href="/#testimonials">Testimonials</Link>
@@ -184,11 +156,9 @@ export default async function ServicePage(
               <Link className="nav-link text-dark" href="#contact">Contact</Link>
             </li>
           </ul>
-
-          {/* Mobile top-drop overlay */}
-          <MobileNavOverlay services={allServices ?? []} brand={settings?.siteName ?? "Hridmann"} />
         </div>
       </nav>
+      <MobileNavOverlay services={allServices ?? []} brand={settings?.siteName ?? "Hridmann"} />
 
 
 
