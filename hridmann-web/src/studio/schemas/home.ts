@@ -14,7 +14,7 @@ defineField({ name: 'aboutBody', type: 'array', title: 'About Body', of: [{ type
 defineField({
       name: 'focusAreas',
       type: 'array',
-      title: 'Areas of Focus',
+      title: 'Core Strengths',
       of: [{ type: 'string' }],
     }),
 defineField({

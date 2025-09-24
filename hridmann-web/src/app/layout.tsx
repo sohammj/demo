@@ -3,6 +3,7 @@ import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import type { Metadata } from "next";
 import React from "react";
+import Script from "next/script";
 
 import ClickSparkWrapper from "@/components/ClickSparkWrapper"; // or "../components/ClickSparkWrapper" if no alias
 
@@ -22,6 +23,10 @@ export default function RootLayout({
 
     <html lang="en" suppressHydrationWarning>
       <head>
+        <Script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          strategy="afterInteractive"
+        />
         {/* Google Fonts (Playfair Display + Poppins) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

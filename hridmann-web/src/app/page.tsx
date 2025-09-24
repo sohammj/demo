@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import type { PortableTextBlock } from 'sanity'
 import Splash from "@/components/Splash"
+import MobileMenuContent from "@/components/MobileMenuContent";
+
 
 
 
@@ -87,68 +89,76 @@ export default async function HomePage() {
       <HeaderEffects />
       <Reveal />
 
-      {/* NAV */}
-      <nav className="navbar navbar-expand-lg bg-white border-bottom py-3 sticky-top header">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* NAV (desktop small dropdown + mobile offcanvas) */}
+      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3 sticky-top header">
         <div className="container">
-          {/* Brand */}
+          {/* Brand (you can hard-code or keep from settings) */}
           <Link href="/" className="navbar-brand fw-semibold">
-            {settings?.siteName || 'Hridmann'}
+            {settings?.siteName ?? "Hridmann"}
           </Link>
 
-          {/* Desktop menu */}
+          {/* Desktop menu (HARD-CODED labels) */}
           <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="#about">
-                {settings?.navAboutLabel || 'About'}
-              </Link>
+              <Link className="nav-link text-dark" href="#about">About</Link>
             </li>
 
-            {/* Services mega (hover only, click navigates) */}
-            <li className="nav-item dropdown position-static">
-              {/* IMPORTANT: no dropdown-toggle and no data-bs-toggle */}
-              <Link className="nav-link text-dark" href="/#services">
-                {settings?.navServicesLabel || 'Services'}
-              </Link>
-
-              {/* Mega dropdown — shown by CSS hover */}
-              <div className="dropdown-menu mega-menu shadow border-0 p-3">
-                <div className="row g-3">
-                  {services?.map((s, i) => (
-                    <div key={s._id ?? s.slug?.current ?? i} className="col-12 col-md-6 col-lg-4">
-                      {s.slug?.current ? (
-                        <Link href={`/services/${s.slug.current}`} className="text-decoration-none">
-                          <div className="py-2 px-2 rounded-3 hover-bg">
-                            <div className="small fw-semibold mb-1">{s.title}</div>
-                            <div className="small text-secondary">{s.description}</div>
-                          </div>
-                        </Link>
-                      ) : (
-                        <div className="py-2 px-2 rounded-3">
-                          <div className="small fw-semibold mb-1">{s.title}</div>
-                          <div className="small text-secondary">{s.description}</div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* Services dropdown — items from Sanity */}
+            <li className="nav-item dropdown">
+              <button
+                className="nav-link btn btn-link text-dark dropdown-toggle px-0"
+                id="svcDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                type="button"
+              >
+                Services
+              </button>
+              <ul
+                className="dropdown-menu shadow border-0 rounded-3 p-2 menu-elev"
+                aria-labelledby="svcDropdown"
+                style={{ minWidth: "20rem" }}
+              >
+                {services.map((s, i) => (
+                  <li key={s._id ?? s.slug?.current ?? i}>
+                    {s.slug?.current ? (
+                      <Link className="dropdown-item rounded-2 py-2" href={`/services/${s.slug.current}`}>
+                        {s.title}
+                      </Link>
+                    ) : (
+                      <span className="dropdown-item rounded-2 py-2 disabled">{s.title}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="#testimonials">
-                {settings?.navTestimonialsLabel || 'Testimonials'}
-              </Link>
+              <Link className="nav-link text-dark" href="#testimonials">Testimonials</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark" href="#contact">
-                {settings?.navContactLabel || 'Contact'}
-              </Link>
+              <Link className="nav-link text-dark" href="#contact">Contact</Link>
             </li>
           </ul>
 
           {/* Mobile toggler */}
           <button
-            className="btn d-lg-none border-0"
+            className="navbar-toggler d-lg-none border-0"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#mobileNav"
@@ -160,61 +170,43 @@ export default async function HomePage() {
         </div>
       </nav>
 
-      {/* Mobile offcanvas menu */}
-      <div className="offcanvas offcanvas-end" tabIndex={-1} id="mobileNav" aria-labelledby="mobileNavLabel">
+      {/* Mobile offcanvas (full-screen; accordion shows Sanity services) */}
+      <div className="offcanvas offcanvas-end mobile-menu" tabIndex={-1} id="mobileNav" aria-labelledby="mobileNavLabel">
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="mobileNavLabel">{settings?.siteName || 'Hridmann'}</h5>
+          <h5 className="offcanvas-title mb-0" id="mobileNavLabel">{settings?.siteName ?? "Hridmann"}</h5>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
         </div>
+
         <div className="offcanvas-body">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" data-bs-dismiss="offcanvas" href="#about">
-                {settings?.navAboutLabel || 'About'}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <button
-                className="nav-link w-100 text-start"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mServices"
-                aria-expanded="false"
-                aria-controls="mServices"
-              >
-                {settings?.navServicesLabel || 'Services'}
-              </button>
-              <div id="mServices" className="collapse ps-3">
-                <ul className="list-unstyled mb-2">
-                  {services?.map((s, i) => (
-                    <li key={s._id ?? s.slug?.current ?? i} className="my-1">
-                      {s.slug?.current ? (
-                        <Link
-                          href={`/services/${s.slug.current}`}
-                          className="text-decoration-none"
-                          data-bs-dismiss="offcanvas"
-                        >
-                          {s.title}
-                        </Link>
-                      ) : s.title}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" data-bs-dismiss="offcanvas" href="#testimonials">
-                {settings?.navTestimonialsLabel || 'Testimonials'}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link  className="nav-link" data-bs-dismiss="offcanvas" href="#contact">
-                {settings?.navContactLabel || 'Contact'}
-              </Link>
-            </li>
-          </ul>
+          <MobileMenuContent
+            services={services}
+            aboutLabel="About"
+            servicesLabel="Services"
+            testimonialsLabel="Testimonials"
+            contactLabel="Contact"
+          />
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* HERO */}
       <header className="hero py-5">
@@ -306,7 +298,7 @@ export default async function HomePage() {
                 </div>
               )}
 
-              {/* Areas of Focus & Certifications card */}
+              {/* Core Strengths*/}
               <div className="card card-soft p-4">
                 {home?.focusAreas?.length ? (
                   <>
