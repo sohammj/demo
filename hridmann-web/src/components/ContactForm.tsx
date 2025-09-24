@@ -23,9 +23,14 @@ export default function ContactForm({ label }: { label?: string }) {
       } else {
         alert("Something went wrong. Please try again.");
       }
-    } catch (err: any) {
-      alert("Error: " + err.message);
+    } catch (err) {
+    if (err instanceof Error) {
+        alert("Error: " + err.message);
+    } else {
+        alert("An unknown error occurred.");
     }
+    }
+
   }
 
   return (
