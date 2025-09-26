@@ -291,7 +291,7 @@ export default async function HomePage() {
           <div className="row justify-content-center text-center mb-4">
             <div className="col-lg-8">
               <h2 className="fw-semibold">{home?.servicesTitle || 'Services'}</h2>
-              <p className="muted">
+              <p className="text-dark">
                 {home?.servicesSubtitle || 'Psychology-led programs tailored to people, culture, and performance.'}
               </p>
             </div>
@@ -330,7 +330,7 @@ export default async function HomePage() {
           <div className="row justify-content-center text-center mb-4">
             <div className="col-lg-8">
               <h2 className="fw-semibold">{home?.testimonialsTitle || 'Testimonials'}</h2>
-              <p className="muted">{home?.testimonialsSubtitle || 'What leaders and learners say.'}</p>
+              <p className="text-dark">{home?.testimonialsSubtitle || 'What leaders and learners say.'}</p>
             </div>
           </div>
 
