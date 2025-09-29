@@ -360,9 +360,26 @@ export default async function ServicePage(
 
       {/* FOOTER */}
       <footer className="py-4 border-top bg-white">
-        <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-          <div>© {new Date().getFullYear()} {settings?.siteName || 'Hridmann'}</div>
-          <div className="footer-note small">{settings?.footerNote || '  '}</div>
+        <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between text-center">
+          
+          {/* Left side - copyright */}
+          <div className="text-muted small">
+            © {new Date().getFullYear()} {settings?.siteName || "Hridmann"}
+          </div>
+
+          {/* Center - signature */}
+          <div className="my-2 my-md-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/harshana-signature.jpeg"
+              style={{ height: "20px", objectFit: "contain" }}
+            />
+          </div>
+
+          {/* Right side - footer note */}
+          <div className="footer-note small text-muted">
+            {settings?.footerNote || ""}
+          </div>
         </div>
       </footer>
     </main>
