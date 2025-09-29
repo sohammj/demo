@@ -269,12 +269,12 @@ export default async function HomePage() {
               <div className="card bg-[var(--soft)] border-0 shadow-none p-4">
                 {home?.focusAreas?.length ? (
                   <>
-                    <h5 className="mb-3">Core Strengths</h5>
-                    <ul className="mb-0">
+                    <h5 className="mb-3 font-semibold">Core Strengths</h5>
+                    <div className="space-y-1">
                       {home.focusAreas.map((item, i) => (
-                        <li key={i}>{item}</li>
+                        <p key={i} className="m-0">{item}</p>
                       ))}
-                    </ul>
+                    </div>
                   </>
                 ) : null}
               </div>
