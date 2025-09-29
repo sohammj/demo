@@ -19,6 +19,12 @@ import { SERVICES_QUERY } from "@/lib/queries";
 
 type Slug = { current?: string };
 type ServiceListItem = { _id?: string; slug?: Slug; title: string };
+type SubService = {
+  _key: string;
+  title: string;
+  slug?: { current?: string };
+};
+
 
 
 type Params = { slug: string }
@@ -269,25 +275,22 @@ export default async function ServicePage(
                   <div className="mb-5">
                     <h2 className="h3 mb-3">Workshops</h2>
                     <div className="row g-4">
-                      {service.subServices.map((sub: any) => (
+                      {service.subServices.map((sub: SubService) => (
                         <div key={sub._key} className="col-md-6">
                           <div className="card h-100 p-4 rounded-4 shadow-sm">
                             <h3 className="h5">{sub.title}</h3>
                             <Link
-                              href={`/services/${service.slug?.current}/${sub.slug}`}
+                              href={`/services/${service.slug?.current}/${sub.slug?.current}`}
                               className="stretched-link text-decoration-none"
                             >
                               Learn more →
                             </Link>
-
-
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
               )}
-
             </div>
             {/* Sidebar */}
             <aside className="col-lg-4">
