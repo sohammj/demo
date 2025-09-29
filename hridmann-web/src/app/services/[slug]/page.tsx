@@ -1,4 +1,3 @@
-
 // src/app/services/[slug]/page.tsx
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -10,22 +9,19 @@ import {
   SETTINGS_QUERY,
 } from '@/lib/queries'
 import type { PortableTextBlock } from 'sanity'
-import ContactForm from "@/components/ContactForm";
-
+import ContactForm from "@/components/ContactForm"
 
 // + imports
-import MobileNavOverlay from "@/components/MobileNavOverlay";
-import { SERVICES_QUERY } from "@/lib/queries";
+import MobileNavOverlay from "@/components/MobileNavOverlay"
+import { SERVICES_QUERY } from "@/lib/queries"
 
-type Slug = { current?: string };
-type ServiceListItem = { _id?: string; slug?: Slug; title: string };
+type Slug = { current?: string }
+type ServiceListItem = { _id?: string; slug?: Slug; title: string }
 type SubService = {
-  _key: string;
-  title: string;
-  slug?: { current?: string };
-};
-
-
+  _key: string
+  title: string
+  slug?: { current?: string }
+}
 
 type Params = { slug: string }
 
@@ -48,7 +44,7 @@ type ServiceDoc = {
   agenda?: AgendaItem[]
   quickFacts?: QuickFact[]
   related?: RelatedRef[]
-  subServices?: SubService[];
+  subServices?: SubService[]
 }
 
 type Settings = {
@@ -61,7 +57,6 @@ type Settings = {
 
 /** Next.js 15: still fine to return plain objects here */
 export async function generateStaticParams() {
-  // Most Sanity schemas store the slug as { slug: { current: string } }
   const slugs = await sanityClient.fetch<{ slug?: { current?: string } }[]>(
     SERVICE_SLUGS_QUERY
   )
@@ -71,11 +66,11 @@ export async function generateStaticParams() {
     .map((slug) => ({ slug: slug as string }))
 }
 
-/** Next.js 15: params is a Promise — await it */
+/** ✅ FIX: params is a plain object (not Promise) */
 export async function generateMetadata(
-  { params }: { params: Promise<Params> }
+  { params }: { params: Params }
 ): Promise<Metadata> {
-  const { slug } = await params
+  const { slug } = params
   const svc = await sanityClient.fetch<ServiceDoc>(SERVICE_BY_SLUG_QUERY, {
     slug,
   })
@@ -85,17 +80,18 @@ export async function generateMetadata(
   }
 }
 
-/** Next.js 15: params is a Promise — await it */
+/** ✅ FIX: params is a plain object (not Promise) */
 export default async function ServicePage(
-  { params }: { params: Promise<Params> }
+  { params }: { params: Params }
 ) {
-  const { slug } = await params
+  const { slug } = params
 
   const [service, allServices, settings] = await Promise.all([
     sanityClient.fetch<ServiceDoc>(SERVICE_BY_SLUG_QUERY, { slug }),
     sanityClient.fetch<ServiceListItem[]>(SERVICES_QUERY),
     sanityClient.fetch<Settings>(SETTINGS_QUERY),
-  ]);
+  ])
+
   if (!service) {
     return (
       <div className="container py-5">
@@ -111,32 +107,20 @@ export default async function ServicePage(
 
   return (
     <main>
-
-
-
-
-
-      {/* NAV (desktop small dropdown + mobile hamburger) */}
+      {/* NAV */}
       <nav className="navbar navbar-expand-lg navbar-light  py-3 sticky-top header">
         <div className="container">
-          {/* Brand */}
           <Link href="/" className="navbar-brand fw-semibold">
             {settings?.siteName ?? "Hridmann"}
           </Link>
-
-          {/* Desktop menu */}
           <ul className="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center gap-3">
             <li className="nav-item">
               <Link className="nav-link text-dark" href="/#about">About</Link>
             </li>
-
-            {/* Services dropdown — click scrolls to #services; hover shows list */}
             <li className="nav-item dropdown position-static">
               <Link className="nav-link text-dark px-0" href="/#services">
                 Services
               </Link>
-
-              {/* HOVER (desktop) = small dropdown with items from Sanity */}
               <ul
                 className="dropdown-menu shadow border-0 rounded-3 p-2 menu-elev"
                 style={{ minWidth: "20rem" }}
@@ -154,7 +138,6 @@ export default async function ServicePage(
                 ))}
               </ul>
             </li>
-
             <li className="nav-item">
               <Link className="nav-link text-dark" href="/#testimonials">Testimonials</Link>
             </li>
@@ -162,15 +145,9 @@ export default async function ServicePage(
               <Link className="nav-link text-dark" href="/#contact">Contact</Link>
             </li>
           </ul>
-
-          {/* Mobile hamburger button - positioned on the right */}
           <MobileNavOverlay services={allServices} brand={settings?.siteName ?? "Hridmann"} />
         </div>
       </nav>
-
-
-
-
 
       {/* HERO */}
       <section className="bg-light py-5 border-bottom">
@@ -189,7 +166,6 @@ export default async function ServicePage(
                 <Link href="/#testimonials" className="btn btn-outline-primary flex-fill">Read testimonials</Link>
               </div>
             </div>
-
             <div className="col-lg-6">
               {service.heroImage?.asset?.url && (
                 <div className="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
@@ -210,14 +186,13 @@ export default async function ServicePage(
       <section className="py-5">
         <div className="container">
           <div className="row g-5">
-            {/* Main content */}
             <div className="col-lg-8">
-              {Array.isArray(service.body) && service.body.length > 0 ? (
+              {Array.isArray(service.body) && service.body.length > 0 && (
                 <div className="mb-5">
                   <h2 className="h3 mb-3">Overview</h2>
                   <PortableText value={service.body} />
                 </div>
-              ) : null}
+              )}
 
               {!!service.agenda?.length && (
                 <div className="mb-5">
@@ -247,28 +222,25 @@ export default async function ServicePage(
                 </div>
               )}
 
-              {/* Gallery */}
               {!!service.gallery?.length && (
                 <div className="mb-2">
                   <div className="row g-3">
                     {service.gallery
                       .filter((img) => !!img?.asset?.url)
-                      .map((img, i) => {
-                        const key = img._key || `${img.asset?.url}-${i}`
-                        return (
-                          <div className="col-sm-6 col-lg-4" key={key}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={img.asset!.url!}
-                              alt={`${service.title} image ${i + 1}`}
-                              className="w-100 rounded-4"
-                            />
-                          </div>
-                        )
-                      })}
+                      .map((img, i) => (
+                        <div className="col-sm-6 col-lg-4" key={img._key || `${img.asset?.url}-${i}`}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={img.asset!.url!}
+                            alt={`${service.title} image ${i + 1}`}
+                            className="w-100 rounded-4"
+                          />
+                        </div>
+                      ))}
                   </div>
                 </div>
               )}
+
               {service.slug?.current === "journey-oriented-training-and-workshops" &&
                 Array.isArray(service.subServices) && service.subServices.length > 0 && (
                   <div className="mb-5">
@@ -292,10 +264,9 @@ export default async function ServicePage(
                     </div>
                   </div>
               )}
- 
-
             </div>
-            {/* Sidebar */}
+
+            {/* SIDEBAR */}
             <aside className="col-lg-4">
               <div className="position-sticky" style={{ top: '96px' }}>
                 <div className="card shadow-sm rounded-4">
@@ -322,12 +293,11 @@ export default async function ServicePage(
                 </div>
               </div>
             </aside>
-
           </div>
         </div>
       </section>
 
-      {/* Related */}
+      {/* RELATED */}
       {!!related.length && (
         <section className="py-5 bg-body-tertiary border-top" aria-labelledby="related">
           <div className="container">
@@ -359,8 +329,6 @@ export default async function ServicePage(
       <section id="contact" className="py-5 bg-light border-top">
         <div className="container">
           <div className="row g-4 align-items-stretch">
-
-            {/* Left card */}
             <div className="col-lg-5">
               <div className="card rounded-4 shadow-sm h-100">
                 <div className="card-body">
@@ -385,8 +353,6 @@ export default async function ServicePage(
                 </div>
               </div>
             </div>
-
-            {/* Right form */}
             <div className="col-lg-7">
               <div className="card card-soft p-4 h-100">
                 <h5 className="mb-3">{settings?.formSendLabel || 'Send a Message'}</h5>
@@ -397,8 +363,7 @@ export default async function ServicePage(
         </div>
       </section>
 
-
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="py-4 border-top bg-white">
         <div className="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
           <div>© {new Date().getFullYear()} {settings?.siteName || 'Hridmann'}</div>
