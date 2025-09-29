@@ -19,14 +19,13 @@ type QuickFact = { _key?: string; label: string; value: string };
 type SubService = {
   _key: string;
   title: string;
-  slug: string;  
+  slug?: { current?: string };
   content?: PortableTextBlock[];
   heroImage?: SanityImage;
   quickFacts?: QuickFact[];
 };
 
 export async function generateStaticParams() {
-  // Fetch all services
   const services = await sanityClient.fetch(SERVICES_QUERY);
 
   const params: { slug: string; subslug: string }[] = [];
@@ -34,12 +33,12 @@ export async function generateStaticParams() {
     const service = await sanityClient.fetch(SERVICE_BY_SLUG_QUERY, {
       slug: svc.slug.current,
     });
-    if (service?.subServices?.length > 0) {
+    if (Array.isArray(service?.subServices)) {
       service.subServices.forEach((sub: SubService) => {
-        if (sub.slug) {
+        if (sub.slug?.current) {
           params.push({
             slug: svc.slug.current,
-            subslug: sub.slug,
+            subslug: sub.slug.current,
           });
         }
       });
@@ -48,18 +47,22 @@ export async function generateStaticParams() {
   return params;
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug, subslug } = await params;
   const service = await sanityClient.fetch(SERVICE_BY_SLUG_QUERY, { slug });
-  const subService = service?.subServices?.find((s: SubService) => s.slug === subslug);
+  const subService = service?.subServices?.find(
+    (s: SubService) => s.slug?.current === subslug
+  );
 
   return {
-    title: subService?.title ? `${subService.title} – ${service.title}` : "Workshop",
+    title: subService?.title
+      ? `${subService.title} – ${service?.title}`
+      : "Workshop",
     description: service?.description,
   };
 }
 
-export default async function SubServicePage({ params }: { params: Promise<Params> }) {
+export default async function SubServicePage({ params }: { params: Params }) {
   const { slug, subslug } = await params;
 
   const [service, allServices, settings] = await Promise.all([
@@ -69,7 +72,7 @@ export default async function SubServicePage({ params }: { params: Promise<Param
   ]);
 
   const subService: SubService | undefined = service?.subServices?.find(
-    (s: SubService) => s.slug === subslug
+    (s: SubService) => s.slug?.current === subslug
   );
 
   if (!subService) {
@@ -142,7 +145,7 @@ export default async function SubServicePage({ params }: { params: Promise<Param
         </div>
       </section>
 
-      {/* QUICK FACTS (if any) */}
+      {/* QUICK FACTS */}
       {Array.isArray(subService.quickFacts) && subService.quickFacts.length > 0 && (
         <section className="py-5">
           <div className="container">
@@ -167,7 +170,7 @@ export default async function SubServicePage({ params }: { params: Promise<Param
         </section>
       )}
 
-      {/* CONTACT WIDGET */}
+      {/* CONTACT */}
       <section id="contact" className="py-5 bg-light border-top">
         <div className="container">
           <div className="row g-4 align-items-stretch">
@@ -213,3 +216,4 @@ export default async function SubServicePage({ params }: { params: Promise<Param
     </main>
   );
 }
+

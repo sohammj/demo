@@ -269,28 +269,31 @@ export default async function ServicePage(
                   </div>
                 </div>
               )}
-              {/* Workshops (only for Journey-Oriented) */}
               {service.slug?.current === "journey-oriented-training-and-workshops" &&
                 Array.isArray(service.subServices) && service.subServices.length > 0 && (
                   <div className="mb-5">
                     <h2 className="h3 mb-3">Workshops</h2>
                     <div className="row g-4">
-                      {service.subServices.map((sub: SubService) => (
-                        <div key={sub._key} className="col-md-6">
-                          <div className="card h-100 p-4 rounded-4 shadow-sm">
-                            <h3 className="h5">{sub.title}</h3>
-                            <Link
-                              href={`/services/${service.slug?.current}/${sub.slug}`}
-                              className="stretched-link text-decoration-none"
-                            >
-                              Learn more →
-                            </Link>
+                      {service.subServices.map((sub) =>
+                        sub.slug?.current ? (
+                          <div key={sub._key} className="col-md-6">
+                            <div className="card h-100 p-4 rounded-4 shadow-sm">
+                              <h3 className="h5">{sub.title}</h3>
+                              <Link
+                                href={`/services/${service.slug?.current}/${sub.slug.current}`}
+                                className="stretched-link text-decoration-none"
+                              >
+                                Learn more →
+                              </Link>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ) : null
+                      )}
                     </div>
                   </div>
               )}
+ 
+
             </div>
             {/* Sidebar */}
             <aside className="col-lg-4">
