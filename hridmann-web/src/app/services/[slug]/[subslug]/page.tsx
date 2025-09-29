@@ -47,8 +47,10 @@ export async function generateStaticParams() {
   return params;
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { slug, subslug } = await params;
+export async function generateMetadata(
+  { params }: { params: Params }
+): Promise<Metadata> {
+  const { slug, subslug } = params; // ✅ no await
   const service = await sanityClient.fetch(SERVICE_BY_SLUG_QUERY, { slug });
   const subService = service?.subServices?.find(
     (s: SubService) => s.slug?.current === subslug
@@ -62,8 +64,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-export default async function SubServicePage({ params }: { params: Params }) {
-  const { slug, subslug } = await params;
+export default async function SubServicePage(
+  { params }: { params: Params }
+) {
+  const { slug, subslug } = params; // ✅ no await
 
   const [service, allServices, settings] = await Promise.all([
     sanityClient.fetch(SERVICE_BY_SLUG_QUERY, { slug }),
@@ -216,4 +220,3 @@ export default async function SubServicePage({ params }: { params: Params }) {
     </main>
   );
 }
-
