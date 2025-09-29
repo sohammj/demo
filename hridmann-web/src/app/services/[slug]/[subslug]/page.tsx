@@ -143,7 +143,7 @@ export default async function SubServicePage({ params }: { params: Promise<Param
       </section>
 
       {/* QUICK FACTS (if any) */}
-      {subService.quickFacts?.length > 0 && (
+      {Array.isArray(subService.quickFacts) && subService.quickFacts.length > 0 && (
         <section className="py-5">
           <div className="container">
             <div className="row g-5">
