@@ -51,7 +51,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug, subslug } = await params;
   const service = await sanityClient.fetch(SERVICE_BY_SLUG_QUERY, { slug });
-  const subService = service?.subServices?.find((s: SubService) => s.slug?.current === subslug);
+  const subService = service?.subServices?.find((s: SubService) => s.slug === subslug);
 
   return {
     title: subService?.title ? `${subService.title} – ${service.title}` : "Workshop",
