@@ -280,7 +280,7 @@ export default async function ServicePage(
                           <div className="card h-100 p-4 rounded-4 shadow-sm">
                             <h3 className="h5">{sub.title}</h3>
                             <Link
-                              href={`/services/${service.slug?.current}/${sub.slug?.current}`}
+                              href={`/services/${service.slug?.current}/${sub.slug}`}
                               className="stretched-link text-decoration-none"
                             >
                               Learn more →
