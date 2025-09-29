@@ -271,7 +271,7 @@ export default async function ServicePage(
               )}
               {/* Workshops (only for Journey-Oriented) */}
               {service.slug?.current === "journey-oriented-training-and-workshops" &&
-                service.subServices?.length > 0 && (
+                Array.isArray(service.subServices) && service.subServices.length > 0 && (
                   <div className="mb-5">
                     <h2 className="h3 mb-3">Workshops</h2>
                     <div className="row g-4">
